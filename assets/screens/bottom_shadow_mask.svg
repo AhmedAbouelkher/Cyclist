@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="395" height="679" viewBox="0 0 395 679">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0"/>
+      <stop offset="0.581" stop-color="#4b4b4b" stop-opacity="0.11"/>
+      <stop offset="1" stop-color="#545454" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="Rectangle_1989" x="0" y="0" width="395" height="679" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Rectangle_1989)">
+    <g id="Rectangle_1989-2" data-name="Rectangle 1989" transform="translate(386 670) rotate(180)" stroke="rgba(112,112,112,0.1)" stroke-width="1" opacity="0.69" fill="url(#linear-gradient)">
+      <rect width="377" height="661" rx="4" stroke="none"/>
+      <rect x="0.5" y="0.5" width="376" height="660" rx="3.5" fill="none"/>
+    </g>
+  </g>
+</svg>

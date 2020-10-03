@@ -1,0 +1,19 @@
+{
+    "name": "Ahmed",
+    "phone": "966123456787",
+    "neighborhood_id": 1,
+    "sale": 0.3,
+    "total_price": 33.3,
+    "longitude": 33.3,
+    "latitude": 33.3,
+    "address": "bla bla bla ",
+    "note": "bla bla bla ",
+    "type_payment": "paylink",
+    "products": [
+        {
+            "quantity": 1,
+            "color": "#eea3a0",
+            "product_id": 2
+        }
+    ]
+}

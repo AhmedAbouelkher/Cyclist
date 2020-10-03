@@ -1,0 +1,1223 @@
+{
+    "sliders": [
+        {
+            "id": 8,
+            "image": "1595972184.jpg",
+            "title": "بوكس المززاج",
+            "link": "www.mazajasly.com",
+            "created_at": "2020-07-29T01:36:24.000000Z",
+            "updated_at": "2020-07-29T01:36:24.000000Z",
+            "image_path": "https://mazajasly.com/uploads/slider_images/1595972184.jpg"
+        },
+        {
+            "id": 7,
+            "image": "1595972149.jpg",
+            "title": "بوكس المزاج",
+            "link": "www.mazajasly.com",
+            "created_at": "2020-07-29T01:35:49.000000Z",
+            "updated_at": "2020-07-29T01:35:49.000000Z",
+            "image_path": "https://mazajasly.com/uploads/slider_images/1595972149.jpg"
+        }
+    ],
+    "cities": [
+        {
+            "id": 3,
+            "name_ar": "الرياض",
+            "name_en": "Riyadh",
+            "created_at": "2020-08-13T21:36:34.000000Z",
+            "updated_at": "2020-08-13T21:36:34.000000Z",
+            "name": "الرياض",
+            "neighborhoods": [
+                {
+                    "id": 3,
+                    "name_ar": "الازدهار",
+                    "name_en": "alezdihar",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-13T21:37:19.000000Z",
+                    "updated_at": "2020-08-15T16:47:18.000000Z",
+                    "name": "الازدهار"
+                },
+                {
+                    "id": 4,
+                    "name_ar": "التعاون",
+                    "name_en": "altaawan",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T16:46:37.000000Z",
+                    "updated_at": "2020-08-15T16:46:37.000000Z",
+                    "name": "التعاون"
+                },
+                {
+                    "id": 5,
+                    "name_ar": "المصيف",
+                    "name_en": "AL MASEEF",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T16:47:56.000000Z",
+                    "updated_at": "2020-08-15T16:47:56.000000Z",
+                    "name": "المصيف"
+                },
+                {
+                    "id": 6,
+                    "name_ar": "المرسلات",
+                    "name_en": "AL MURSALAT",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T16:49:57.000000Z",
+                    "updated_at": "2020-08-15T16:49:57.000000Z",
+                    "name": "المرسلات"
+                },
+                {
+                    "id": 7,
+                    "name_ar": "الورود",
+                    "name_en": "AL WOROOD",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T16:50:51.000000Z",
+                    "updated_at": "2020-08-15T16:50:51.000000Z",
+                    "name": "الورود"
+                },
+                {
+                    "id": 8,
+                    "name_ar": "الملك عبدالله",
+                    "name_en": "KING ABDULLAH",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T16:51:34.000000Z",
+                    "updated_at": "2020-08-15T16:51:34.000000Z",
+                    "name": "الملك عبدالله"
+                },
+                {
+                    "id": 9,
+                    "name_ar": "الملك فهد",
+                    "name_en": "KING FAHAD",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:06:42.000000Z",
+                    "updated_at": "2020-08-15T17:06:42.000000Z",
+                    "name": "الملك فهد"
+                },
+                {
+                    "id": 10,
+                    "name_ar": "النفل",
+                    "name_en": "AL NAFL",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:07:04.000000Z",
+                    "updated_at": "2020-08-15T17:07:04.000000Z",
+                    "name": "النفل"
+                },
+                {
+                    "id": 11,
+                    "name_ar": "الوادي",
+                    "name_en": "AL WADI",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:07:26.000000Z",
+                    "updated_at": "2020-08-15T17:07:26.000000Z",
+                    "name": "الوادي"
+                },
+                {
+                    "id": 12,
+                    "name_ar": "الفلاح",
+                    "name_en": "AL FALAAH",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:08:06.000000Z",
+                    "updated_at": "2020-08-15T17:08:06.000000Z",
+                    "name": "الفلاح"
+                },
+                {
+                    "id": 13,
+                    "name_ar": "الواحة",
+                    "name_en": "AL WAHA",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:11:09.000000Z",
+                    "updated_at": "2020-08-15T17:11:09.000000Z",
+                    "name": "الواحة"
+                },
+                {
+                    "id": 14,
+                    "name_ar": "المروج",
+                    "name_en": "AL MOROOJ",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:14:09.000000Z",
+                    "updated_at": "2020-08-15T17:14:09.000000Z",
+                    "name": "المروج"
+                },
+                {
+                    "id": 15,
+                    "name_ar": "النخيل",
+                    "name_en": "AL NAKHEEL",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:14:32.000000Z",
+                    "updated_at": "2020-08-15T17:14:32.000000Z",
+                    "name": "النخيل"
+                },
+                {
+                    "id": 16,
+                    "name_ar": "الخزامى",
+                    "name_en": "AL KHUZAMA",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:15:54.000000Z",
+                    "updated_at": "2020-08-15T17:15:54.000000Z",
+                    "name": "الخزامى"
+                },
+                {
+                    "id": 17,
+                    "name_ar": "حطين",
+                    "name_en": "HETTEIN",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:16:45.000000Z",
+                    "updated_at": "2020-08-15T17:16:45.000000Z",
+                    "name": "حطين"
+                },
+                {
+                    "id": 18,
+                    "name_ar": "العقيق",
+                    "name_en": "AL AQIQ",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:17:41.000000Z",
+                    "updated_at": "2020-08-15T17:17:41.000000Z",
+                    "name": "العقيق"
+                },
+                {
+                    "id": 19,
+                    "name_ar": "الملقا",
+                    "name_en": "AL MALQA",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:21:21.000000Z",
+                    "updated_at": "2020-08-15T17:21:21.000000Z",
+                    "name": "الملقا"
+                },
+                {
+                    "id": 20,
+                    "name_ar": "القيروان",
+                    "name_en": "AL QAIRAWAN",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:22:01.000000Z",
+                    "updated_at": "2020-08-15T17:22:01.000000Z",
+                    "name": "القيروان"
+                },
+                {
+                    "id": 21,
+                    "name_ar": "بنبان",
+                    "name_en": "BANBAN",
+                    "price": "50.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:22:24.000000Z",
+                    "updated_at": "2020-08-15T17:22:24.000000Z",
+                    "name": "بنبان"
+                },
+                {
+                    "id": 22,
+                    "name_ar": "ملهم",
+                    "name_en": "MALHAM",
+                    "price": "50.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:24:18.000000Z",
+                    "updated_at": "2020-08-15T17:24:18.000000Z",
+                    "name": "ملهم"
+                },
+                {
+                    "id": 23,
+                    "name_ar": "الياسمين",
+                    "name_en": "AL YASMEEN",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:25:04.000000Z",
+                    "updated_at": "2020-08-15T17:25:04.000000Z",
+                    "name": "الياسمين"
+                },
+                {
+                    "id": 24,
+                    "name_ar": "الصحافة",
+                    "name_en": "AL SAHAFA",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:25:31.000000Z",
+                    "updated_at": "2020-08-15T17:25:31.000000Z",
+                    "name": "الصحافة"
+                },
+                {
+                    "id": 25,
+                    "name_ar": "النرجس",
+                    "name_en": "AL NARJES",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:25:55.000000Z",
+                    "updated_at": "2020-08-15T17:25:55.000000Z",
+                    "name": "النرجس"
+                },
+                {
+                    "id": 26,
+                    "name_ar": "الدرعية",
+                    "name_en": "Diriyah",
+                    "price": "30.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:27:06.000000Z",
+                    "updated_at": "2020-08-15T17:27:06.000000Z",
+                    "name": "الدرعية"
+                },
+                {
+                    "id": 27,
+                    "name_ar": "الجبيلة",
+                    "name_en": "AL JEbaylah",
+                    "price": "50.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:27:57.000000Z",
+                    "updated_at": "2020-08-15T17:27:57.000000Z",
+                    "name": "الجبيلة"
+                },
+                {
+                    "id": 28,
+                    "name_ar": "الرائد",
+                    "name_en": "AL RAID",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:28:54.000000Z",
+                    "updated_at": "2020-08-15T17:28:54.000000Z",
+                    "name": "الرائد"
+                },
+                {
+                    "id": 29,
+                    "name_ar": "المعذر",
+                    "name_en": "Al Maather",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:29:40.000000Z",
+                    "updated_at": "2020-08-15T17:29:40.000000Z",
+                    "name": "المعذر"
+                },
+                {
+                    "id": 30,
+                    "name_ar": "الرحمانية",
+                    "name_en": "AL Rahmaniyah",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:30:28.000000Z",
+                    "updated_at": "2020-08-15T17:30:28.000000Z",
+                    "name": "الرحمانية"
+                },
+                {
+                    "id": 31,
+                    "name_ar": "العليا",
+                    "name_en": "AL ULAYYA",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:31:07.000000Z",
+                    "updated_at": "2020-08-15T17:31:07.000000Z",
+                    "name": "العليا"
+                },
+                {
+                    "id": 32,
+                    "name_ar": "ام الحمام",
+                    "name_en": "UM HAMAM",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:31:30.000000Z",
+                    "updated_at": "2020-08-15T17:31:30.000000Z",
+                    "name": "ام الحمام"
+                },
+                {
+                    "id": 33,
+                    "name_ar": "المؤتمرات",
+                    "name_en": "AL MUTAMARAT",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:32:34.000000Z",
+                    "updated_at": "2020-08-15T17:32:34.000000Z",
+                    "name": "المؤتمرات"
+                },
+                {
+                    "id": 34,
+                    "name_ar": "السليمانية",
+                    "name_en": "AL Sulaymaniyah",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:33:16.000000Z",
+                    "updated_at": "2020-08-15T17:33:16.000000Z",
+                    "name": "السليمانية"
+                },
+                {
+                    "id": 35,
+                    "name_ar": "صلاح الدين",
+                    "name_en": "SALAH UDDIN",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:33:43.000000Z",
+                    "updated_at": "2020-08-15T17:33:43.000000Z",
+                    "name": "صلاح الدين"
+                },
+                {
+                    "id": 36,
+                    "name_ar": "العمارية",
+                    "name_en": "AL AMMARIYAH",
+                    "price": "50.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:34:05.000000Z",
+                    "updated_at": "2020-08-15T17:34:05.000000Z",
+                    "name": "العمارية"
+                },
+                {
+                    "id": 37,
+                    "name_ar": "البجيري",
+                    "name_en": "Al Bejairi",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:35:19.000000Z",
+                    "updated_at": "2020-08-15T17:35:19.000000Z",
+                    "name": "البجيري"
+                },
+                {
+                    "id": 38,
+                    "name_ar": "عريض",
+                    "name_en": "ORAIDH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:36:06.000000Z",
+                    "updated_at": "2020-08-15T17:36:06.000000Z",
+                    "name": "عريض"
+                },
+                {
+                    "id": 39,
+                    "name_ar": "الامانة",
+                    "name_en": "AL AMANAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:37:47.000000Z",
+                    "updated_at": "2020-08-15T17:37:47.000000Z",
+                    "name": "الامانة"
+                },
+                {
+                    "id": 40,
+                    "name_ar": "الوزارات",
+                    "name_en": "AL WEZARAT",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:54:54.000000Z",
+                    "updated_at": "2020-08-15T17:54:54.000000Z",
+                    "name": "الوزارات"
+                },
+                {
+                    "id": 41,
+                    "name_ar": "الضباط",
+                    "name_en": "AL DHUBBAT",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:55:41.000000Z",
+                    "updated_at": "2020-08-15T17:55:41.000000Z",
+                    "name": "الضباط"
+                },
+                {
+                    "id": 42,
+                    "name_ar": "الملز",
+                    "name_en": "AL MALZ",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:56:08.000000Z",
+                    "updated_at": "2020-08-15T17:56:08.000000Z",
+                    "name": "الملز"
+                },
+                {
+                    "id": 43,
+                    "name_ar": "المربع",
+                    "name_en": "AL MURABBA",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:56:32.000000Z",
+                    "updated_at": "2020-08-15T17:56:32.000000Z",
+                    "name": "المربع"
+                },
+                {
+                    "id": 44,
+                    "name_ar": "الربوة",
+                    "name_en": "AL RABWA",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:57:40.000000Z",
+                    "updated_at": "2020-08-15T17:57:40.000000Z",
+                    "name": "الربوة"
+                },
+                {
+                    "id": 45,
+                    "name_ar": "الصالحية",
+                    "name_en": "AL SALEHIYAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:58:06.000000Z",
+                    "updated_at": "2020-08-15T17:58:06.000000Z",
+                    "name": "الصالحية"
+                },
+                {
+                    "id": 46,
+                    "name_ar": "العود",
+                    "name_en": "AL OUD",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:58:26.000000Z",
+                    "updated_at": "2020-08-15T17:58:26.000000Z",
+                    "name": "العود"
+                },
+                {
+                    "id": 47,
+                    "name_ar": "المرقب",
+                    "name_en": "AL MARQAB",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:58:48.000000Z",
+                    "updated_at": "2020-08-15T17:58:48.000000Z",
+                    "name": "المرقب"
+                },
+                {
+                    "id": 48,
+                    "name_ar": "غبيرة",
+                    "name_en": "GHUBAIRAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:59:13.000000Z",
+                    "updated_at": "2020-08-15T17:59:13.000000Z",
+                    "name": "غبيرة"
+                },
+                {
+                    "id": 49,
+                    "name_ar": "معكال",
+                    "name_en": "MEAKAAL",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T17:59:37.000000Z",
+                    "updated_at": "2020-08-15T17:59:37.000000Z",
+                    "name": "معكال"
+                },
+                {
+                    "id": 50,
+                    "name_ar": "البطحاء",
+                    "name_en": "AL BATHA",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:00:06.000000Z",
+                    "updated_at": "2020-08-15T18:00:06.000000Z",
+                    "name": "البطحاء"
+                },
+                {
+                    "id": 51,
+                    "name_ar": "الفوطة",
+                    "name_en": "AL FOUTA",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:00:26.000000Z",
+                    "updated_at": "2020-08-15T18:00:26.000000Z",
+                    "name": "الفوطة"
+                },
+                {
+                    "id": 52,
+                    "name_ar": "الديرة",
+                    "name_en": "Deira",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:01:06.000000Z",
+                    "updated_at": "2020-08-15T18:01:06.000000Z",
+                    "name": "الديرة"
+                },
+                {
+                    "id": 53,
+                    "name_ar": "ام سليم",
+                    "name_en": "OM SLEIAM",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:01:33.000000Z",
+                    "updated_at": "2020-08-15T18:01:33.000000Z",
+                    "name": "ام سليم"
+                },
+                {
+                    "id": 54,
+                    "name_ar": "عليشة",
+                    "name_en": "Alaisha",
+                    "price": "30.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:02:22.000000Z",
+                    "updated_at": "2020-08-15T18:02:22.000000Z",
+                    "name": "عليشة"
+                },
+                {
+                    "id": 55,
+                    "name_ar": "الفاخرية",
+                    "name_en": "AL FAKHERIYAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:02:47.000000Z",
+                    "updated_at": "2020-08-15T18:02:47.000000Z",
+                    "name": "الفاخرية"
+                },
+                {
+                    "id": 56,
+                    "name_ar": "الناصرية",
+                    "name_en": "NASRIYAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:03:19.000000Z",
+                    "updated_at": "2020-08-15T18:03:19.000000Z",
+                    "name": "الناصرية"
+                },
+                {
+                    "id": 57,
+                    "name_ar": "الشميسي",
+                    "name_en": "AL SHUMAISI",
+                    "price": "30.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:05:23.000000Z",
+                    "updated_at": "2020-08-15T18:05:23.000000Z",
+                    "name": "الشميسي"
+                },
+                {
+                    "id": 58,
+                    "name_ar": "حي العجلية",
+                    "name_en": "Al-Ajaliyah",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:06:03.000000Z",
+                    "updated_at": "2020-08-15T18:06:03.000000Z",
+                    "name": "حي العجلية"
+                },
+                {
+                    "id": 59,
+                    "name_ar": "الشرفية",
+                    "name_en": "AL SHARAFIYAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:09:51.000000Z",
+                    "updated_at": "2020-08-15T18:09:51.000000Z",
+                    "name": "الشرفية"
+                },
+                {
+                    "id": 60,
+                    "name_ar": "الرفيعة",
+                    "name_en": "Al-Rafiah",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:12:29.000000Z",
+                    "updated_at": "2020-08-15T18:12:29.000000Z",
+                    "name": "الرفيعة"
+                },
+                {
+                    "id": 61,
+                    "name_ar": "الصناعية",
+                    "name_en": "AL SENAYEAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:13:18.000000Z",
+                    "updated_at": "2020-08-15T18:13:18.000000Z",
+                    "name": "الصناعية"
+                },
+                {
+                    "id": 62,
+                    "name_ar": "عتيقة",
+                    "name_en": "OTAIQAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:13:53.000000Z",
+                    "updated_at": "2020-08-15T18:13:53.000000Z",
+                    "name": "عتيقة"
+                },
+                {
+                    "id": 63,
+                    "name_ar": "السلي",
+                    "name_en": "AL SULAY",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:14:26.000000Z",
+                    "updated_at": "2020-08-15T18:14:26.000000Z",
+                    "name": "السلي"
+                },
+                {
+                    "id": 64,
+                    "name_ar": "الجزيرة",
+                    "name_en": "AL JAZIRAH",
+                    "price": "30.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:15:46.000000Z",
+                    "updated_at": "2020-08-15T18:15:46.000000Z",
+                    "name": "الجزيرة"
+                },
+                {
+                    "id": 65,
+                    "name_ar": "الفيحاء",
+                    "name_en": "AL FAYHAA",
+                    "price": "30.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:16:22.000000Z",
+                    "updated_at": "2020-08-15T18:16:22.000000Z",
+                    "name": "الفيحاء"
+                },
+                {
+                    "id": 66,
+                    "name_ar": "الروابي",
+                    "name_en": "AL RAWABI",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:16:43.000000Z",
+                    "updated_at": "2020-08-15T18:16:43.000000Z",
+                    "name": "الروابي"
+                },
+                {
+                    "id": 67,
+                    "name_ar": "المنار",
+                    "name_en": "ALMANAR",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:18:15.000000Z",
+                    "updated_at": "2020-08-15T18:18:15.000000Z",
+                    "name": "المنار"
+                },
+                {
+                    "id": 68,
+                    "name_ar": "النسيم",
+                    "name_en": "AL NASEEM",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:20:59.000000Z",
+                    "updated_at": "2020-08-15T18:20:59.000000Z",
+                    "name": "النسيم"
+                },
+                {
+                    "id": 69,
+                    "name_ar": "الروضة",
+                    "name_en": "AL RAWDHA",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:21:21.000000Z",
+                    "updated_at": "2020-08-15T18:21:21.000000Z",
+                    "name": "الروضة"
+                },
+                {
+                    "id": 70,
+                    "name_ar": "النهضة",
+                    "name_en": "AL NAHDHA",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:23:15.000000Z",
+                    "updated_at": "2020-08-15T18:23:15.000000Z",
+                    "name": "النهضة"
+                },
+                {
+                    "id": 71,
+                    "name_ar": "الخليج",
+                    "name_en": "AL KHALEEJ",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:23:32.000000Z",
+                    "updated_at": "2020-08-15T18:23:32.000000Z",
+                    "name": "الخليج"
+                },
+                {
+                    "id": 72,
+                    "name_ar": "الحمراء",
+                    "name_en": "AL HAMRA",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:23:58.000000Z",
+                    "updated_at": "2020-08-15T18:23:58.000000Z",
+                    "name": "الحمراء"
+                },
+                {
+                    "id": 73,
+                    "name_ar": "اشبيليا",
+                    "name_en": "ESHBEILYA",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:24:56.000000Z",
+                    "updated_at": "2020-08-30T19:30:55.000000Z",
+                    "name": "اشبيليا"
+                },
+                {
+                    "id": 74,
+                    "name_ar": "اليرموك",
+                    "name_en": "AL YARMOOK",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:25:30.000000Z",
+                    "updated_at": "2020-08-30T19:31:33.000000Z",
+                    "name": "اليرموك"
+                },
+                {
+                    "id": 75,
+                    "name_ar": "قرطبة",
+                    "name_en": "QURTUBA",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:26:01.000000Z",
+                    "updated_at": "2020-08-15T18:26:01.000000Z",
+                    "name": "قرطبة"
+                },
+                {
+                    "id": 76,
+                    "name_ar": "المونسية",
+                    "name_en": "AL MUNASIYAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:28:18.000000Z",
+                    "updated_at": "2020-08-15T18:28:18.000000Z",
+                    "name": "المونسية"
+                },
+                {
+                    "id": 77,
+                    "name_ar": "الرمال",
+                    "name_en": "AL REMAL",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:28:36.000000Z",
+                    "updated_at": "2020-08-15T18:28:36.000000Z",
+                    "name": "الرمال"
+                },
+                {
+                    "id": 78,
+                    "name_ar": "الجنادرية",
+                    "name_en": "Janadriyah",
+                    "price": "30.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:40:12.000000Z",
+                    "updated_at": "2020-08-15T18:40:12.000000Z",
+                    "name": "الجنادرية"
+                },
+                {
+                    "id": 79,
+                    "name_ar": "النظيم",
+                    "name_en": "AL NAZEEM",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:45:08.000000Z",
+                    "updated_at": "2020-08-15T18:45:08.000000Z",
+                    "name": "النظيم"
+                },
+                {
+                    "id": 80,
+                    "name_ar": "القادسية",
+                    "name_en": "AL QADISYAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:45:39.000000Z",
+                    "updated_at": "2020-08-15T18:45:39.000000Z",
+                    "name": "القادسية"
+                },
+                {
+                    "id": 81,
+                    "name_ar": "الملك فيصل",
+                    "name_en": "KING FAISAL",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:46:03.000000Z",
+                    "updated_at": "2020-08-15T18:46:03.000000Z",
+                    "name": "الملك فيصل"
+                },
+                {
+                    "id": 82,
+                    "name_ar": "القدس",
+                    "name_en": "AL QUDS",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:46:32.000000Z",
+                    "updated_at": "2020-08-15T18:46:32.000000Z",
+                    "name": "القدس"
+                },
+                {
+                    "id": 83,
+                    "name_ar": "الثمامة",
+                    "name_en": "AL THUMAMAH",
+                    "price": "50.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:46:54.000000Z",
+                    "updated_at": "2020-08-15T18:46:54.000000Z",
+                    "name": "الثمامة"
+                },
+                {
+                    "id": 84,
+                    "name_ar": "عرقة",
+                    "name_en": "ERQAH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:48:09.000000Z",
+                    "updated_at": "2020-08-15T18:48:09.000000Z",
+                    "name": "عرقة"
+                },
+                {
+                    "id": 85,
+                    "name_ar": "العريجاء",
+                    "name_en": "AL ORAIJA",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:50:12.000000Z",
+                    "updated_at": "2020-08-15T18:50:12.000000Z",
+                    "name": "العريجاء"
+                },
+                {
+                    "id": 86,
+                    "name_ar": "البديعة",
+                    "name_en": "AL Badi’a",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:51:04.000000Z",
+                    "updated_at": "2020-08-15T18:51:04.000000Z",
+                    "name": "البديعة"
+                },
+                {
+                    "id": 87,
+                    "name_ar": "لبن الاحمدية",
+                    "name_en": "LABN AL AHMADIYAH",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:51:35.000000Z",
+                    "updated_at": "2020-08-15T18:51:35.000000Z",
+                    "name": "لبن الاحمدية"
+                },
+                {
+                    "id": 88,
+                    "name_ar": "ظهرة لبن",
+                    "name_en": "ZAHRAT LABN",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:52:00.000000Z",
+                    "updated_at": "2020-08-15T18:52:00.000000Z",
+                    "name": "ظهرة لبن"
+                },
+                {
+                    "id": 89,
+                    "name_ar": "المهدية",
+                    "name_en": "AL MAHDIYAH",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:52:23.000000Z",
+                    "updated_at": "2020-08-15T18:52:23.000000Z",
+                    "name": "المهدية"
+                },
+                {
+                    "id": 90,
+                    "name_ar": "السويدي",
+                    "name_en": "AL SWAIDI",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:52:51.000000Z",
+                    "updated_at": "2020-08-15T18:52:51.000000Z",
+                    "name": "السويدي"
+                },
+                {
+                    "id": 91,
+                    "name_ar": "السويدي الغربي",
+                    "name_en": "AL SWAIDI AL GHARBI",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:53:29.000000Z",
+                    "updated_at": "2020-08-15T18:53:29.000000Z",
+                    "name": "السويدي الغربي"
+                },
+                {
+                    "id": 92,
+                    "name_ar": "طويق",
+                    "name_en": "TAWAIQ",
+                    "price": "40.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:53:51.000000Z",
+                    "updated_at": "2020-08-15T18:53:51.000000Z",
+                    "name": "طويق"
+                },
+                {
+                    "id": 93,
+                    "name_ar": "السفارات",
+                    "name_en": "DIPLOMATIC",
+                    "price": "30.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:54:22.000000Z",
+                    "updated_at": "2020-08-15T18:54:22.000000Z",
+                    "name": "السفارات"
+                },
+                {
+                    "id": 94,
+                    "name_ar": "المنصورة",
+                    "name_en": "AL MANSOURAH",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:55:01.000000Z",
+                    "updated_at": "2020-08-15T18:55:01.000000Z",
+                    "name": "المنصورة"
+                },
+                {
+                    "id": 95,
+                    "name_ar": "الفيصلية",
+                    "name_en": "AL FAISALYAH",
+                    "price": "30.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:55:49.000000Z",
+                    "updated_at": "2020-08-15T18:55:49.000000Z",
+                    "name": "الفيصلية"
+                },
+                {
+                    "id": 96,
+                    "name_ar": "العزيزية",
+                    "name_en": "AL AZIZIYAH",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:56:15.000000Z",
+                    "updated_at": "2020-08-15T18:56:15.000000Z",
+                    "name": "العزيزية"
+                },
+                {
+                    "id": 97,
+                    "name_ar": "الشفا",
+                    "name_en": "AL SHIFA",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:56:37.000000Z",
+                    "updated_at": "2020-08-15T18:56:37.000000Z",
+                    "name": "الشفا"
+                },
+                {
+                    "id": 98,
+                    "name_ar": "عكاظ",
+                    "name_en": "OKAZ",
+                    "price": "40.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:57:03.000000Z",
+                    "updated_at": "2020-08-15T18:57:03.000000Z",
+                    "name": "عكاظ"
+                },
+                {
+                    "id": 99,
+                    "name_ar": "بدر",
+                    "name_en": "BADR",
+                    "price": "40.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:57:26.000000Z",
+                    "updated_at": "2020-08-15T18:57:26.000000Z",
+                    "name": "بدر"
+                },
+                {
+                    "id": 100,
+                    "name_ar": "الاسكان",
+                    "name_en": "ESKAAN",
+                    "price": "40.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:57:52.000000Z",
+                    "updated_at": "2020-08-15T18:57:52.000000Z",
+                    "name": "الاسكان"
+                },
+                {
+                    "id": 101,
+                    "name_ar": "المشاعل",
+                    "name_en": "AL MASHAAEL",
+                    "price": "40.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:58:43.000000Z",
+                    "updated_at": "2020-08-15T18:58:43.000000Z",
+                    "name": "المشاعل"
+                },
+                {
+                    "id": 102,
+                    "name_ar": "الدار البيضاء",
+                    "name_en": "DAR ALBAIDHA",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:59:34.000000Z",
+                    "updated_at": "2020-08-15T18:59:34.000000Z",
+                    "name": "الدار البيضاء"
+                },
+                {
+                    "id": 103,
+                    "name_ar": "المناخ",
+                    "name_en": "AL MUNAAKH",
+                    "price": "30.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T18:59:56.000000Z",
+                    "updated_at": "2020-08-15T18:59:56.000000Z",
+                    "name": "المناخ"
+                },
+                {
+                    "id": 104,
+                    "name_ar": "الحائر",
+                    "name_en": "AL HAIR",
+                    "price": "50.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T19:00:20.000000Z",
+                    "updated_at": "2020-08-15T19:00:20.000000Z",
+                    "name": "الحائر"
+                },
+                {
+                    "id": 105,
+                    "name_ar": "الغنامية",
+                    "name_en": "AL GHANNAMIYAH",
+                    "price": "50.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T19:00:48.000000Z",
+                    "updated_at": "2020-08-15T19:00:48.000000Z",
+                    "name": "الغنامية"
+                },
+                {
+                    "id": 106,
+                    "name_ar": "المصانع",
+                    "name_en": "AL MASANE",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T19:01:14.000000Z",
+                    "updated_at": "2020-08-15T19:01:14.000000Z",
+                    "name": "المصانع"
+                },
+                {
+                    "id": 107,
+                    "name_ar": "تلال الشفا",
+                    "name_en": "TELAL AL SHIFA",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T19:01:38.000000Z",
+                    "updated_at": "2020-08-15T19:01:38.000000Z",
+                    "name": "تلال الشفا"
+                },
+                {
+                    "id": 108,
+                    "name_ar": "نمار",
+                    "name_en": "NAMAR",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T19:01:59.000000Z",
+                    "updated_at": "2020-08-15T19:01:59.000000Z",
+                    "name": "نمار"
+                },
+                {
+                    "id": 109,
+                    "name_ar": "الحزم",
+                    "name_en": "AL HAZM",
+                    "price": "40.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T19:02:23.000000Z",
+                    "updated_at": "2020-08-15T19:02:23.000000Z",
+                    "name": "الحزم"
+                },
+                {
+                    "id": 110,
+                    "name_ar": "ديراب",
+                    "name_en": "DERAB",
+                    "price": "50.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T19:02:39.000000Z",
+                    "updated_at": "2020-08-15T19:02:39.000000Z",
+                    "name": "ديراب"
+                },
+                {
+                    "id": 111,
+                    "name_ar": "الدريهمية",
+                    "name_en": "Ad-Durayhimiyah",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T19:03:17.000000Z",
+                    "updated_at": "2020-08-15T19:03:17.000000Z",
+                    "name": "الدريهمية"
+                },
+                {
+                    "id": 112,
+                    "name_ar": "الزهرة",
+                    "name_en": "AL ZAHRA",
+                    "price": "35.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-15T19:03:50.000000Z",
+                    "updated_at": "2020-08-15T19:03:50.000000Z",
+                    "name": "الزهرة"
+                },
+                {
+                    "id": 113,
+                    "name_ar": "المغرزات",
+                    "name_en": "AL MUGHARRAZAT",
+                    "price": "18.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-17T18:12:45.000000Z",
+                    "updated_at": "2020-08-17T18:12:45.000000Z",
+                    "name": "المغرزات"
+                },
+                {
+                    "id": 114,
+                    "name_ar": "العارض",
+                    "name_en": "AL AARIDH",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-19T16:22:16.000000Z",
+                    "updated_at": "2020-08-19T16:22:16.000000Z",
+                    "name": "العارض"
+                },
+                {
+                    "id": 115,
+                    "name_ar": "الندى",
+                    "name_en": "AL NADA",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-19T16:22:30.000000Z",
+                    "updated_at": "2020-08-19T16:22:30.000000Z",
+                    "name": "الندى"
+                },
+                {
+                    "id": 116,
+                    "name_ar": "غرناطة",
+                    "name_en": "gharnata",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-20T17:48:57.000000Z",
+                    "updated_at": "2020-08-20T17:48:57.000000Z",
+                    "name": "غرناطة"
+                },
+                {
+                    "id": 117,
+                    "name_ar": "المحمدية",
+                    "name_en": "al muhammadyah",
+                    "price": "22.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-20T17:49:23.000000Z",
+                    "updated_at": "2020-08-20T17:49:23.000000Z",
+                    "name": "المحمدية"
+                },
+                {
+                    "id": 118,
+                    "name_ar": "الربيع",
+                    "name_en": "AL RABEA",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-26T19:49:47.000000Z",
+                    "updated_at": "2020-08-26T19:49:47.000000Z",
+                    "name": "الربيع"
+                },
+                {
+                    "id": 119,
+                    "name_ar": "الغدير",
+                    "name_en": "AL GHADEER",
+                    "price": "20.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-30T19:05:44.000000Z",
+                    "updated_at": "2020-08-30T19:05:44.000000Z",
+                    "name": "الغدير"
+                },
+                {
+                    "id": 120,
+                    "name_ar": "الريان",
+                    "name_en": "AL RAYYAN",
+                    "price": "25.00",
+                    "city_id": "3",
+                    "created_at": "2020-08-30T19:29:21.000000Z",
+                    "updated_at": "2020-08-30T19:29:21.000000Z",
+                    "name": "الريان"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name_ar": "خارج الرياض",
+            "name_en": "Outside Riyadh",
+            "created_at": "2020-09-05T20:29:35.000000Z",
+            "updated_at": "2020-09-05T20:29:35.000000Z",
+            "name": "خارج الرياض",
+            "neighborhoods": []
+        }
+    ]
+}
