@@ -1,8 +1,8 @@
 import 'package:badges/badges.dart';
 import 'package:cyclist/blocs/home_screen_bloc/home_screen_bloc.dart';
 import 'package:cyclist/repos/cart_contents_provider.dart';
-import 'package:cyclist/screens/home_screen/tabs/cart_tab.dart';
-import 'package:cyclist/screens/home_screen/tabs/home_tab.dart';
+import 'package:cyclist/screens/home_screen%20(dep)/tabs/cart_tab.dart';
+import 'package:cyclist/screens/home_screen%20(dep)/tabs/home_tab.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/enums.dart';
 import 'package:cyclist/utils/keys.dart';

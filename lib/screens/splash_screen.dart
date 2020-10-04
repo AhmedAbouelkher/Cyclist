@@ -1,7 +1,8 @@
+import 'package:cyclist/screens/HomeScreens/home_screen.dart';
 import 'package:cyclist/utils/images.dart';
+import 'package:cyclist/widgets/custom_page_transition.dart';
 import 'package:cyclist/widgets/standered_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -16,10 +17,16 @@ class _SplashScreenState extends State<SplashScreen> {
       (value) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-            builder: (_) => HomeScreen(),
+          CustomPageRoute(
+            builder: (_) => Home(),
           ),
         );
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (_) => HomeScreen(),
+        //   ),
+        // );
       },
     );
     super.initState();
@@ -29,13 +36,23 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: StanderedAppBar(),
-      body: Center(
-        child: Image.asset(
-          Constants.logoV,
-          width: size.width * 0.6,
+      appBar: PreferredSize(
+        child: AppBar(
+          elevation: 0,
+          brightness: Brightness.light,
+          backgroundColor: Colors.transparent,
         ),
+        preferredSize: Size.fromHeight(0),
       ),
+      body: Center(
+        child: Text("Splash Screen"),
+      ),
+      // body: Center(
+      //   child: Image.asset(
+      //     Constants.logoV,
+      //     width: size.width * 0.6,
+      //   ),
+      // ),
     );
   }
 }

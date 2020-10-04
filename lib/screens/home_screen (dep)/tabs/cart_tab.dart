@@ -171,12 +171,12 @@ class _CartTabState extends State<CartTab> {
                       // CartRepo().clearCart();
                       // setState(() {});
                       // return;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => OrderCheckout(),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (_) => OrderCheckout(),
+                      //   ),
+                      // );
                     },
                   ),
                 ),

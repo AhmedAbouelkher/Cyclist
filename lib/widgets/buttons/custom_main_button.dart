@@ -41,13 +41,13 @@ class CustomMainButton extends StatelessWidget {
                 Radius.circular(borderRaduis),
               ),
               border: Border.all(
-                color: CColors.darkBlueColor,
+                color: CColors.darkGreen,
                 width: 0.8,
               )),
           child: Center(
             child: Text(
               text,
-              style: TextStyle(color: CColors.darkBlueColor, fontSize: textSize ?? 15),
+              style: TextStyle(color: CColors.boldBlack, fontSize: textSize ?? 15),
             ),
           ),
         ),

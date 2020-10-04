@@ -3,7 +3,6 @@ import 'package:cyclist/blocs/home_screen_bloc/home_screen_bloc.dart';
 import 'package:cyclist/repos/cart_contents_provider.dart';
 import 'package:cyclist/repos/lang_repo.dart';
 import 'package:cyclist/screens/splash_screen.dart';
-// import 'package:cyclist/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +32,20 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   AppTranslationsDelegate _newLocaleDelegate;
+
+  static Map<int, Color> color = {
+    50: Color.fromRGBO(46, 139, 162, .1),
+    100: Color.fromRGBO(46, 139, 162, .2),
+    300: Color.fromRGBO(46, 139, 162, .4),
+    200: Color.fromRGBO(46, 139, 162, .3),
+    400: Color.fromRGBO(46, 139, 162, .5),
+    500: Color.fromRGBO(46, 139, 162, .6),
+    600: Color.fromRGBO(46, 139, 162, .7),
+    700: Color.fromRGBO(46, 139, 162, .8),
+    800: Color.fromRGBO(46, 139, 162, .9),
+    900: Color.fromRGBO(46, 139, 162, 1),
+  };
+  final MaterialColor primarySwatch = MaterialColor(0xFF2E8BA2, color);
 
   void onLocaleChange(Locale locale) {
     setState(() {
@@ -85,8 +98,23 @@ class _MyAppState extends State<MyApp> {
                 GlobalCupertinoLocalizations.delegate,
               ],
               locale: _newLocaleDelegate.newLocale,
-              title: "Bicycle",
-              theme: ThemeData(fontFamily: 'Cairo', accentColor: CColors.appBarColorOpacity),
+              title: "Cyclist",
+              theme: ThemeData(
+                fontFamily: 'Cairo',
+                primaryColor: CColors.darkGreen,
+                accentColor: CColors.darkGreenAccent,
+                primarySwatch: primarySwatch,
+                accentColorBrightness: Brightness.dark,
+                cursorColor: CColors.darkGreen,
+                brightness: Brightness.light,
+                accentIconTheme: IconThemeData(
+                  color: CColors.lightGreen,
+                ),
+                appBarTheme: AppBarTheme.of(context).copyWith(
+                  brightness: Brightness.dark,
+                ),
+                dialogBackgroundColor: Colors.white,
+              ),
               home: SplashScreen(),
               // home: PaymentScreen(),
             ),

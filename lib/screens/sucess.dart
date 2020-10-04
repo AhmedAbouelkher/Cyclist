@@ -1,4 +1,4 @@
-import 'package:cyclist/screens/home_screen/home_screen.dart';
+import 'package:cyclist/screens/home_screen%20(dep)/home_screen.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
 import 'package:cyclist/widgets/buttons/custom_main_button.dart';
 import 'package:cyclist/widgets/standered_app_bar.dart';

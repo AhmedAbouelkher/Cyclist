@@ -1,4 +1,5 @@
 import 'package:cyclist/repos/lang_repo.dart';
+import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
 import 'package:cyclist/widgets/change_lang.dart';
 import 'package:cyclist/widgets/standered_app_bar.dart';
@@ -84,8 +85,17 @@ class _SettingScreenState extends State<SettingScreen> {
         child: Container(
           child: Column(
             children: <Widget>[
-              StanderedAppBar(appBarType: AppBarType.transparent),
-              // _buildUserDataSummury(size, trs),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FaIcon(Icons.settings, color: CColors.darkGreenAccent),
+                    SizedBox(width: 10),
+                    Text(trs.translate("settings"), style: TextStyle(color: CColors.boldBlack, fontSize: 18)),
+                  ],
+                ),
+              ),
               Column(
                 children: <Widget>[
                   InkWell(
@@ -104,37 +114,37 @@ class _SettingScreenState extends State<SettingScreen> {
                     // contentPadding: EdgeInsets.all(0),
                     leading: Icon(FontAwesomeIcons.fileAlt),
                     onTap: () async {
-                      await _launchURL("terms");
+                      // await _launchURL("terms");
                     },
                     title: Text(
                       trs.translate("use_policy"),
                       style: TextStyle(fontSize: 13),
                     ),
                   ),
-                  DviderRow(),
-                  ListTile(
-                    // contentPadding: EdgeInsets.all(0),
-                    leading: Icon(FontAwesomeIcons.shippingFast),
-                    onTap: () async {
-                      await _launchURL("shipping-and-delivery");
-                    },
-                    title: Text(
-                      trs.translate("shipping_and_delivery"),
-                      style: TextStyle(fontSize: 13),
-                    ),
-                  ),
-                  DviderRow(),
-                  ListTile(
-                    // contentPadding: EdgeInsets.all(0),
-                    leading: Icon(FontAwesomeIcons.slash),
-                    onTap: () async {
-                      await _launchURL("cancellation-of-requests-and-support");
-                    },
-                    title: Text(
-                      trs.translate("cancellation-of-requests-and-support"),
-                      style: TextStyle(fontSize: 13),
-                    ),
-                  ),
+                  // DviderRow(),
+                  // ListTile(
+                  //   // contentPadding: EdgeInsets.all(0),
+                  //   leading: Icon(FontAwesomeIcons.shippingFast),
+                  //   onTap: () async {
+                  //     await _launchURL("shipping-and-delivery");
+                  //   },
+                  //   title: Text(
+                  //     trs.translate("shipping_and_delivery"),
+                  //     style: TextStyle(fontSize: 13),
+                  //   ),
+                  // ),
+                  // DviderRow(),
+                  // ListTile(
+                  //   // contentPadding: EdgeInsets.all(0),
+                  //   leading: Icon(FontAwesomeIcons.slash),
+                  //   onTap: () async {
+                  //     await _launchURL("cancellation-of-requests-and-support");
+                  //   },
+                  //   title: Text(
+                  //     trs.translate("cancellation-of-requests-and-support"),
+                  //     style: TextStyle(fontSize: 13),
+                  //   ),
+                  // ),
                 ],
               ),
             ],

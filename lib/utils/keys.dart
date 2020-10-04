@@ -9,11 +9,4 @@ class Keys {
   static const String tokenKey = 'token';
   static const String userDataKey = 'userDataKey';
   static const String notificationKey = 'notificationKey';
-
-  void setUrl(String url) {
-    if (_websiteUrl == null) {
-      print(url);
-      _websiteUrl = url;
-    }
-  }
 }

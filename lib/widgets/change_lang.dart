@@ -1,4 +1,5 @@
 import 'package:cyclist/repos/lang_repo.dart';
+import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
 import 'package:cyclist/utils/locales/appliction.dart';
 import 'package:cyclist/widgets/buttons/custom_main_button.dart';
@@ -50,6 +51,7 @@ class _ChangeLangState extends State<ChangeLang> {
                 children: [
                   Expanded(
                     child: CustomMainButton(
+                      bgColor: CColors.boldBlack,
                       outline: trs.currentLanguage != 'ar',
                       height: 50,
                       margin: const EdgeInsets.only(left: 10),
@@ -64,6 +66,7 @@ class _ChangeLangState extends State<ChangeLang> {
                   SizedBox(width: 20),
                   Expanded(
                     child: CustomMainButton(
+                      bgColor: CColors.boldBlack,
                       outline: trs.currentLanguage != 'en',
                       height: 50,
                       borderRaduis: 10,

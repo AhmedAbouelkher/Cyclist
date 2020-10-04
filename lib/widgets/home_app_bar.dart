@@ -1,4 +1,4 @@
-import 'package:cyclist/other/setting_screen.dart';
+import 'package:cyclist/screens/other/settings_screen.dart';
 import 'package:cyclist/screens/search_screen.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';

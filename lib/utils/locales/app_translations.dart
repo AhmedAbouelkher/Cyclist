@@ -24,10 +24,35 @@ class AppTranslations {
     return appTranslations;
   }
 
+  TextDirection get currentTextDirection => !isArabic ? TextDirection.ltr : TextDirection.rtl;
   String get currentLanguage => locale.languageCode;
+  bool get isArabic => locale.languageCode == 'ar';
+  bool get isEnglish => locale.languageCode == 'en';
+  TextDirection get directionReversed => isArabic ? TextDirection.ltr : TextDirection.rtl;
 
   String translate(String key) {
-    if (_localisedValues == null) return 'loading...';
+    if (_localisedValues == null) return isArabic ? 'تحميل...' : 'loading...';
     return _localisedValues[key] ?? "$key not found";
+  }
+}
+
+///Arabic is the baseline for this widget
+class LangReversed extends StatelessWidget {
+  final Widget child;
+  final Widget replacment;
+  const LangReversed({
+    Key key,
+    @required this.child,
+    @required this.replacment,
+  })  : assert(child != null && replacment != null),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final AppTranslations trs = AppTranslations.of(context);
+    if (trs.isArabic) {
+      return child;
+    }
+    return replacment;
   }
 }
