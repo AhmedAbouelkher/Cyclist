@@ -62,12 +62,14 @@ class CColors {
   static const Color lightGreenAccent2 = Color(0xFF9046F3);
   static const Color boldLightGreen = Color(0xFF5DC400);
   static const Color lightGreenAccent3 = Color(0xFFC839CB);
-  static const Color lightGreen = Color(0xFFaa7bed);
+  static const Color lightGreen = Color(0xFF36a9e1);
   static const Color paleLightGreen = Color(0xFF317F44);
 
   ///Dark Gradient Color
-  static const Color darkGreen = Color(0xFF2E8BA2);
-  static const Color darkGreenAccent = Color(0xFF691975);
+  static const Color darkGreen = Color(0xFF36a9e1);
+  // static const Color darkGreen = Color(0xFF2E8BA2);
+  // static const Color darkGreenAccent = Color(0xFF691975);
+  static const Color darkGreenAccent = Color(0xFF00405f);
   static const Color greyeshDarkGreen = Color(0xFF2591B1);
   static const Color palehDarkGreen = Color(0xFF2B8869);
   /*

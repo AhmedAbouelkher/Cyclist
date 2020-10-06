@@ -23,9 +23,17 @@ const String loginBannerSVG = '$_assets/svgs/phone_sing_in.svg';
 class Constants {
   static const String _assets = 'assets/';
   static const String _dataPath = _assets + "data/";
+  static const String _websiteApi = "http://alaglate.ainzimati.tk/";
 
   static const String logo = _dataPath + "logo.png";
   static const String logoV = _dataPath + "logo_v.png";
   static const String logoVM = _dataPath + "logo_vm.png";
   static const String logoW = _dataPath + "logo_w.png";
+
+  static const String homeApi = _websiteApi + "api/";
+  static const String mobileTokenApi = _websiteApi + "api/MobileToke/";
+  static const String postsApi = _websiteApi + "api/posts/";
+
+  ///`Post` and `Get` route
+  static const String ridesApi = _websiteApi + "api/rides/";
 }

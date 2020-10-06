@@ -1,8 +1,8 @@
-import 'package:cyclist/repos/lang_repo.dart';
+import 'package:cyclist/Controllers/repositories/lang_repo.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
 import 'package:cyclist/utils/locales/appliction.dart';
-import 'package:cyclist/widgets/buttons/custom_main_button.dart';
+import 'package:cyclist/widgets/custom_main_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

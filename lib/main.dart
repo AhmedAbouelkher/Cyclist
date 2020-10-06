@@ -1,17 +1,12 @@
-import 'package:cyclist/blocs/Provider/login_returen_provider.dart';
-import 'package:cyclist/blocs/home_screen_bloc/home_screen_bloc.dart';
-import 'package:cyclist/repos/cart_contents_provider.dart';
-import 'package:cyclist/repos/lang_repo.dart';
+import 'package:cyclist/Controllers/repositories/lang_repo.dart';
 import 'package:cyclist/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations_delegate.dart';
 import 'package:cyclist/utils/locales/appliction.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: CColors.statusBarClolor));
@@ -75,51 +70,38 @@ class _MyAppState extends State<MyApp> {
     // print(_newLocaleDelegate.newLocale.languageCode);
     // if (todos.length > 0) print(' you still have more todos');
     // HomeRepo().storeOrDestoryFav(prodId: 7);
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => CartItemsProvider(),
-        )
-      ],
-      child: Provider(
-        create: (context) => LoginReturn(),
-        child: BlocProvider(
-          create: (_) => HomeScreenBloc(),
-          child: Directionality(
-            textDirection: _newLocaleDelegate.newLocale.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              supportedLocales: application.supportedLocales(),
-              // builder: DevicePreview.appBuilder,
-              localizationsDelegates: [
-                _newLocaleDelegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              locale: _newLocaleDelegate.newLocale,
-              title: "Cyclist",
-              theme: ThemeData(
-                fontFamily: 'Cairo',
-                primaryColor: CColors.darkGreen,
-                accentColor: CColors.darkGreenAccent,
-                primarySwatch: primarySwatch,
-                accentColorBrightness: Brightness.dark,
-                cursorColor: CColors.darkGreen,
-                brightness: Brightness.light,
-                accentIconTheme: IconThemeData(
-                  color: CColors.lightGreen,
-                ),
-                appBarTheme: AppBarTheme.of(context).copyWith(
-                  brightness: Brightness.dark,
-                ),
-                dialogBackgroundColor: Colors.white,
-              ),
-              home: SplashScreen(),
-              // home: PaymentScreen(),
-            ),
+    return Directionality(
+      textDirection: _newLocaleDelegate.newLocale.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        supportedLocales: application.supportedLocales(),
+        // builder: DevicePreview.appBuilder,
+        localizationsDelegates: [
+          _newLocaleDelegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        locale: _newLocaleDelegate.newLocale,
+        title: "Cyclist",
+        theme: ThemeData(
+          fontFamily: 'Cairo',
+          primaryColor: CColors.darkGreen,
+          accentColor: CColors.darkGreenAccent,
+          primarySwatch: primarySwatch,
+          accentColorBrightness: Brightness.dark,
+          cursorColor: CColors.darkGreen,
+          brightness: Brightness.light,
+          accentIconTheme: IconThemeData(
+            color: CColors.lightGreen,
           ),
+          appBarTheme: AppBarTheme.of(context).copyWith(
+            brightness: Brightness.dark,
+          ),
+          dialogBackgroundColor: Colors.white,
         ),
+        home: SplashScreen(),
+        // home: PaymentScreen(),
       ),
     );
   }

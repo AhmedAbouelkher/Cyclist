@@ -225,7 +225,9 @@
   "hyprid": "هجين",
   "normal": "خريطة",
   "choose_start_line": "اختار خط بداية الفة",
+  "edit_choose_start_line": "تعديل خط بداية الفة",
   "choose_finish_line": "اختار خط نهاية الفة",
+  "edit_choose_finish_line": "تعديل خط نهاية الفة",
   "back": "رجوع",
   "add_lafa": "اضافة الفة"
 }

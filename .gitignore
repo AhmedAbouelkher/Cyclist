@@ -45,3 +45,4 @@ app.*.map.json
 
 ios/Runner/AppDelegate.swift
 android/app/src/main/AndroidManifest.xml
+lib/utils/constants.dart

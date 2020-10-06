@@ -1,4 +1,4 @@
-import 'package:cyclist/screens/HomeScreens/home_screen.dart';
+import 'package:cyclist/screens/home_screen.dart';
 import 'package:cyclist/utils/images.dart';
 import 'package:cyclist/widgets/custom_page_transition.dart';
 import 'package:cyclist/widgets/standered_app_bar.dart';
