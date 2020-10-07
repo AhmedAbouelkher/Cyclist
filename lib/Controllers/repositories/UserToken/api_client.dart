@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:cyclist/models/Rides/ride_post_request.dart';
 import 'package:cyclist/utils/images.dart';
 import 'package:cyclist/utils/shared_perfs_provider.dart';
 import 'package:dio/dio.dart';
@@ -50,7 +50,7 @@ class HomeApiClient {
     }
   }
 
-  Future mobileToken({@required String mobileToken}) async {
+  Future sendMobileToken({@required String mobileToken}) async {
     final String _path = Constants.mobileTokenApi;
     try {
       Response resp = await dio.post(_path,
@@ -127,8 +127,8 @@ class HomeApiClient {
     }
   }
 
-  Future getRides() async {
-    final String _path = Constants.ridesApi;
+  Future getRides({String nextPageUrl}) async {
+    final String _path = nextPageUrl ?? Constants.ridesApi;
     try {
       Response resp = await dio.get(
         _path,
@@ -160,7 +160,37 @@ class HomeApiClient {
     }
   }
 
-  Future storeRide() {
-    throw UnimplementedError("Implement this function to store a new ride");
+  Future storeRide({@required RidePost ridePost}) async {
+    final String _path = Constants.ridesApi;
+    try {
+      Response resp = await dio.post(
+        _path,
+        options: Options(
+          followRedirects: false,
+          headers: {"Accept": 'application/json'},
+          validateStatus: (status) {
+            return status < 500;
+          },
+        ),
+        data: ridePost.toJson(),
+      );
+
+      if (resp.statusCode == 200) {
+        return resp.data;
+      } else {
+        print("[Post Ride] status message: #${resp.statusMessage}, status code: #${resp.statusCode}");
+        return Future.error(resp.data);
+      }
+    } on DioError catch (e) {
+      if (e.response != null) {
+        print(e.response.data);
+        print(e.response.headers);
+        print(e.response.request);
+      } else {
+        print(e.request);
+        print(e.message);
+      }
+      return Future.error("error");
+    }
   }
 }

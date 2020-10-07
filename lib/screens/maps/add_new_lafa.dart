@@ -1,35 +1,41 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:cyclist/Controllers/blocs/MakeRide/makeride_bloc.dart';
 import 'package:cyclist/GoeLocation/models.dart';
+import 'package:cyclist/models/Rides/ride_post_request.dart';
+import 'package:cyclist/utils/alert_manager.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/constants.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
+import 'package:cyclist/widgets/AdaptiveProgressIndicator.dart';
 import 'package:cyclist/widgets/map_style_picker.dart';
 import 'package:cyclist/widgets/standered_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:intl/intl.dart' hide TextDirection;
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:platform_date_picker/platform_date_picker.dart';
 import 'package:cyclist/GoeLocation/geo_locator.dart';
 import 'package:cyclist/utils/extensions.dart';
 
 class AddNewLafa extends StatefulWidget {
   final CLocation currentUserLocation;
+  final VoidCallback onChange;
 
-  const AddNewLafa({Key key, this.currentUserLocation}) : super(key: key);
+  const AddNewLafa({Key key, this.currentUserLocation, this.onChange}) : super(key: key);
   @override
   _AddNewLafaState createState() => _AddNewLafaState();
 }
 
 class _AddNewLafaState extends State<AddNewLafa> {
+  bool _isLoading = false;
   GoogleMapController _controller;
   MapType _mapType = MapType.normal;
-
   int _currentIndex = 0;
   List<Marker> _markers = [];
   List<Circle> _circles = [];
@@ -38,14 +44,18 @@ class _AddNewLafaState extends State<AddNewLafa> {
   PolylinePoints polylinePoints;
   PolylineResultExtended _polylineResultExtended;
   BitmapDescriptor pinLocationIcon;
-  String _startTime;
-  String _endTime;
-  DateTime _date;
   final _sizeFactor = 0.9;
   PageController _pageController;
   final int globalIconsWidth = 60;
+
   double _totalDistance;
   int _totalTime;
+  /*
+  Post Data
+  */
+  TimeOfDay _startTime;
+  TimeOfDay _endTime;
+  DateTime _date;
   CLocation _startLocation;
   CLocation _endLocation;
 
@@ -55,8 +65,8 @@ class _AddNewLafaState extends State<AddNewLafa> {
     _pageController = PageController(
       viewportFraction: 0.75,
     );
-    _startTime = TimeOfDay.now().formatTimeOfDay;
-    _endTime = TimeOfDay.now().formatTimeOfDay;
+    _startTime = TimeOfDay.now();
+    _endTime = TimeOfDay.fromDateTime(DateTime.now().add(Duration(hours: 3)));
     _date = DateTime.now();
     _circles?.add(
       Circle(
@@ -91,6 +101,12 @@ class _AddNewLafaState extends State<AddNewLafa> {
   }
 
   @override
+  void dispose() {
+    _pageController?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final trs = AppTranslations.of(context);
@@ -100,170 +116,49 @@ class _AddNewLafaState extends State<AddNewLafa> {
     );
     return Scaffold(
       appBar: StanderedAppBar(),
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            _buildHeader(context, size, trs),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Row(
-                children: [
-                  Icon(FontAwesomeIcons.clock, size: 18),
-                  SizedBox(width: 10),
-                  Text(
-                    trs.translate("time"),
-                    style: TextStyle(fontSize: 17 * _sizeFactor, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            _addTime(trs, context),
-            SizedBox(height: 5),
-            Divider(endIndent: 20, indent: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Row(
-                children: [
-                  Icon(FontAwesomeIcons.calendarAlt, size: 18),
-                  SizedBox(width: 10),
-                  Text(
-                    trs.translate("date"),
-                    style: TextStyle(fontSize: 17 * _sizeFactor, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            _addDate(trs, context),
-            SizedBox(height: 20),
-            Expanded(
-              child: Stack(
-                children: [
-                  GoogleMap(
-                    tiltGesturesEnabled: true,
-                    myLocationEnabled: true,
-                    myLocationButtonEnabled: false,
-                    zoomControlsEnabled: false,
-                    markers: Set.from(_markers),
-                    circles: Set.from(_circles),
-                    polylines: Set.from(polylines.values),
-                    mapType: _mapType,
-                    onMapCreated: (controller) => _controller = controller,
-                    initialCameraPosition: cameraPosition,
-                    onTap: (position) async {
-                      final int _stageIndex = _pageController.page.toInt();
-                      bool _isFinishLine = false;
-                      if (_stageIndex == 2) return;
-                      polylines?.clear();
-                      polylineCoordinates?.clear();
-                      bool _createPolyLines;
-                      Marker _lastMarker;
-                      if (_stageIndex == 0) {
-                        if (_markers.length >= 2) {
-                          _lastMarker = _markers.last;
-                          _markers?.clear();
-                          _createPolyLines = true;
-                        } else {
-                          _markers?.clear();
-                        }
-                        _startLocation = position.toLocation();
-                        _isFinishLine = false;
-                      } else if (_stageIndex == 1) {
-                        if (_markers.length != 1) {
-                          _markers.removeLast();
-                        }
-                        _createPolyLines = true;
-                        _endLocation = position.toLocation();
-                        _isFinishLine = true;
-                      }
-                      BitmapDescriptor _icon;
-                      if (_isFinishLine) {
-                        _icon = await getMarker(Constants.finishPin, width: globalIconsWidth);
-                      } else {
-                        _icon = await getMarker(Constants.startPin, width: globalIconsWidth);
-                      }
-                      _markers?.add(
-                        Marker(
-                            markerId: MarkerId(position.toString()),
-                            position: position,
-                            draggable: true,
-                            icon: _icon,
-                            onDragEnd: (newPosition) async {
-                              final _canRedrawPolylines = _startLocation != null && _endLocation != null;
-                              if (_canRedrawPolylines) {
-                                if (_stageIndex == 0) {
-                                  _startLocation = newPosition.toLocation();
-                                } else if (_stageIndex == 1) {
-                                  _endLocation = newPosition.toLocation();
-                                }
-                                _createPolyLines = false;
-                                polylines?.clear();
-                                polylineCoordinates?.clear();
-                                await _createPolylines(
-                                  _startLocation.toPosition(),
-                                  _endLocation.toPosition(),
-                                );
-                                setState(() {});
-                              }
-                            }),
-                      );
-                      if (_lastMarker != null) _markers?.add(_lastMarker);
-                      setState(() {});
-                      if (_createPolyLines ?? false) {
-                        await _createPolylines(
-                          _startLocation.toPosition(),
-                          _endLocation.toPosition(),
-                        );
-                        setState(() {});
-                      }
-                      // _controller.animateCamera(CameraUpdate.newLatLng(position));
-                    },
-                  ),
-                  _buildMapControlles(trs, context),
-                  if (_totalDistance != null) ...[
-                    Align(
-                      alignment: Alignment(-.95, -.95),
-                      child: Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                        elevation: 5,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  FaIcon(FontAwesomeIcons.biking, color: CColors.darkGreenAccent, size: 17),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    _totalDistance.getDistance,
-                                    textDirection: TextDirection.ltr,
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  FaIcon(FontAwesomeIcons.clock, color: CColors.darkGreenAccent, size: 17),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    "${(_totalTime / 60).toStringAsFixed(0)} min",
-                                    textDirection: TextDirection.ltr,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+      body: ModalProgressHUD(
+        inAsyncCall: _isLoading,
+        progressIndicator: AdaptiveProgessIndicator(),
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            children: [
+              _buildHeader(context, size, trs),
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  children: [
+                    Icon(FontAwesomeIcons.clock, size: 18),
+                    SizedBox(width: 10),
+                    Text(
+                      trs.translate("time"),
+                      style: TextStyle(fontSize: 17 * _sizeFactor, fontWeight: FontWeight.bold),
                     ),
-                  ]
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+              _addTime(trs, context),
+              SizedBox(height: 5),
+              Divider(endIndent: 20, indent: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  children: [
+                    Icon(FontAwesomeIcons.calendarAlt, size: 18),
+                    SizedBox(width: 10),
+                    Text(
+                      trs.translate("date"),
+                      style: TextStyle(fontSize: 17 * _sizeFactor, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              _addDate(trs, context),
+              SizedBox(height: 20),
+              _buildMap(cameraPosition, trs, context),
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -305,12 +200,9 @@ class _AddNewLafaState extends State<AddNewLafa> {
                 child: Stack(
                   children: [
                     Align(
-                      alignment: Alignment(0.9, 0),
+                      alignment: Alignment(trs.isArabic ? 0.9 : -0.9, 0),
                       child: IconButton(
-                        icon: Icon(
-                          FontAwesomeIcons.solidArrowAltCircleRight,
-                          color: Colors.white,
-                        ),
+                        icon: Icon(trs.isArabic ? FontAwesomeIcons.solidArrowAltCircleRight : FontAwesomeIcons.solidArrowAltCircleLeft, color: Colors.white),
                         onPressed: () {
                           _toggleViews();
                         },
@@ -335,49 +227,215 @@ class _AddNewLafaState extends State<AddNewLafa> {
                 ),
               ),
             ),
-            Card(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              elevation: 0,
-              color: CColors.darkGreenAccent,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-              child: Center(
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment(0.9, 0),
-                      child: IconButton(
-                        icon: Icon(
-                          FontAwesomeIcons.solidArrowAltCircleRight,
-                          color: Colors.white,
+            BlocConsumer<MakerideBloc, MakerideState>(
+              listener: (context, state) {
+                if (state is MakingNewRide) {
+                  setState(() => _isLoading = true);
+                } else if (state is MakingNewRideCompleted) {
+                  setState(() => _isLoading = false);
+                  alertWithSuccess(context: context, msg: trs.translate("add_new_lafa_succeded"));
+                  Navigator.pop(context);
+                  widget.onChange();
+                } else if (state is MakingRideFailed) {
+                  setState(() => _isLoading = false);
+                  alertWithErr(context: context, msg: trs.translate("rating_error"));
+                }
+              },
+              builder: (context, state) {
+                return Card(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  elevation: 0,
+                  color: CColors.darkGreenAccent,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                  child: Center(
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment(trs.isArabic ? 0.9 : -0.9, 0),
+                          child: IconButton(
+                            icon:
+                                Icon(trs.isArabic ? FontAwesomeIcons.solidArrowAltCircleRight : FontAwesomeIcons.solidArrowAltCircleLeft, color: Colors.white),
+                            onPressed: () => _toggleViews(finish: true),
+                          ),
                         ),
-                        onPressed: () {
-                          _toggleViews(finish: true);
-                        },
-                      ),
-                    ),
-                    // Align(alignment: Alignment(0.55, 0), child: Container(color: Colors.white, width: 0.5, height: 24)),
-                    Center(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            trs.translate("add_lafa"),
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
+                        Center(
+                          child: InkWell.noSplash(
+                            onTap: () {
+                              final _ride = RidePost(
+                                date: _date,
+                                endAt: _endTime,
+                                startAt: _startTime,
+                                longitudeFinish: _endLocation.lang,
+                                latitudeFinish: _endLocation.lat,
+                                longitudeStart: _startLocation.lang,
+                                latitudeStart: _startLocation.lat,
+                                addressFinish: _polylineResultExtended.routes.first.legs.first.endAddress,
+                                addressStart: _polylineResultExtended.routes.first.legs.first.startAddress,
+                              );
+                              print(_ride.toJson());
+                              // return;
+                              BlocProvider.of<MakerideBloc>(context).add(MakeNewRide(
+                                ride: RidePost(
+                                  date: _date,
+                                  endAt: _endTime,
+                                  startAt: _startTime,
+                                  longitudeFinish: _endLocation.lang,
+                                  latitudeFinish: _endLocation.lat,
+                                  longitudeStart: _startLocation.lang,
+                                  latitudeStart: _startLocation.lat,
+                                  addressFinish: _polylineResultExtended.routes.first.legs.first.endAddress,
+                                  addressStart: _polylineResultExtended.routes.first.legs.first.startAddress,
+                                ),
+                                key: UniqueKey(),
+                              ));
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(trs.translate("add_lafa"), style: TextStyle(fontSize: 18, color: Colors.white)),
+                                SizedBox(width: 10),
+                                Icon(FontAwesomeIcons.plus, color: Colors.white),
+                              ],
                             ),
                           ),
-                          SizedBox(width: 10),
-                          Icon(FontAwesomeIcons.plus, color: Colors.white),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildMap(CameraPosition cameraPosition, AppTranslations trs, BuildContext context) {
+    return Expanded(
+      child: Stack(
+        children: [
+          GoogleMap(
+            tiltGesturesEnabled: true,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: false,
+            zoomControlsEnabled: false,
+            markers: Set.from(_markers),
+            circles: Set.from(_circles),
+            polylines: Set.from(polylines.values),
+            mapType: _mapType,
+            onMapCreated: (controller) => _controller = controller,
+            initialCameraPosition: cameraPosition,
+            onTap: (position) async {
+              final int _stageIndex = _pageController.page.toInt();
+              bool _isFinishLine = false;
+              if (_stageIndex == 2) return;
+              polylines?.clear();
+              polylineCoordinates?.clear();
+              bool _createPolyLines;
+              Marker _lastMarker;
+              if (_stageIndex == 0) {
+                if (_markers.length >= 2) {
+                  _lastMarker = _markers.last;
+                  _markers?.clear();
+                  _createPolyLines = true;
+                } else {
+                  _markers?.clear();
+                }
+                _startLocation = position.toLocation();
+                _isFinishLine = false;
+              } else if (_stageIndex == 1) {
+                if (_markers.length != 1) {
+                  _markers.removeLast();
+                }
+                _createPolyLines = true;
+                _endLocation = position.toLocation();
+                _isFinishLine = true;
+              }
+              BitmapDescriptor _icon;
+              if (_isFinishLine) {
+                _icon = await getMarker(Constants.finishPin, width: globalIconsWidth);
+              } else {
+                _icon = await getMarker(Constants.startPin, width: globalIconsWidth);
+              }
+              _markers?.add(
+                Marker(
+                    markerId: MarkerId(position.toString()),
+                    position: position,
+                    draggable: true,
+                    icon: _icon,
+                    onDragEnd: (newPosition) async {
+                      final _canRedrawPolylines = _startLocation != null && _endLocation != null;
+                      if (_canRedrawPolylines) {
+                        if (_stageIndex == 0) {
+                          _startLocation = newPosition.toLocation();
+                        } else if (_stageIndex == 1) {
+                          _endLocation = newPosition.toLocation();
+                        }
+                        _createPolyLines = false;
+                        polylines?.clear();
+                        polylineCoordinates?.clear();
+                        await _createPolylines(
+                          _startLocation.toPosition(),
+                          _endLocation.toPosition(),
+                        );
+                        setState(() {});
+                      }
+                    }),
+              );
+              if (_lastMarker != null) _markers?.add(_lastMarker);
+              setState(() {});
+              if (_createPolyLines ?? false) {
+                await _createPolylines(
+                  _startLocation.toPosition(),
+                  _endLocation.toPosition(),
+                );
+                setState(() {});
+              }
+              // _controller.animateCamera(CameraUpdate.newLatLng(position));
+            },
+          ),
+          _buildMapControlles(trs, context),
+          if (_totalDistance != null) ...[
+            Align(
+              alignment: Alignment(trs.isArabic ? -0.95 : 0.95, -0.95),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                elevation: 5,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          FaIcon(FontAwesomeIcons.biking, color: CColors.darkGreenAccent, size: 17),
+                          SizedBox(width: 5),
+                          Text(
+                            _totalDistance.getDistance,
+                            textDirection: TextDirection.ltr,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          FaIcon(FontAwesomeIcons.clock, color: CColors.darkGreenAccent, size: 17),
+                          SizedBox(width: 5),
+                          Text(
+                            "${(_totalTime / 60).toStringAsFixed(0)} min",
+                            textDirection: TextDirection.ltr,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ]
+        ],
       ),
     );
   }
@@ -520,7 +578,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
                         ),
                         replacment: Center(
                           child: Icon(
-                            Icons.arrow_back,
+                            trs.isArabic ? Icons.arrow_back : Icons.arrow_forward,
                             size: size.aspectRatio * 50,
                             color: Colors.white,
                           ),
@@ -556,9 +614,9 @@ class _AddNewLafaState extends State<AddNewLafa> {
             onTap: () async {
               DateTime date = await PlatformDatePicker.showDate(
                 context: context,
-                firstDate: DateTime(DateTime.now().year - 2),
-                initialDate: DateTime.now(),
-                lastDate: DateTime(DateTime.now().year + 2),
+                firstDate: _date.subtract(Duration(days: 265 * 2)),
+                initialDate: _date,
+                lastDate: _date.add(Duration(days: 265 * 2)),
               );
               if (date != null) {
                 setState(() => _date = date);
@@ -601,10 +659,10 @@ class _AddNewLafaState extends State<AddNewLafa> {
                   onTap: () async {
                     TimeOfDay temp = await PlatformDatePicker.showTime(
                       context: context,
-                      initialTime: TimeOfDay.fromDateTime(DateTime.now()),
+                      initialTime: _startTime,
                     );
                     if (temp != null) {
-                      setState(() => _startTime = temp.formatTimeOfDay);
+                      setState(() => _startTime = temp);
                     }
                   },
                   child: Card(
@@ -615,7 +673,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
                       padding: EdgeInsets.symmetric(horizontal: 15 * _sizeFactor),
                       child: Center(
                         child: Text(
-                          _startTime,
+                          _startTime.formatTimeOfDay,
                           textDirection: TextDirection.ltr,
                           style: TextStyle(
                             fontSize: 17 * _sizeFactor,
@@ -637,10 +695,10 @@ class _AddNewLafaState extends State<AddNewLafa> {
                   onTap: () async {
                     TimeOfDay temp = await PlatformDatePicker.showTime(
                       context: context,
-                      initialTime: TimeOfDay.fromDateTime(DateTime.now()),
+                      initialTime: _endTime,
                     );
                     if (temp != null) {
-                      setState(() => _endTime = temp.formatTimeOfDay);
+                      setState(() => _endTime = temp);
                     }
                   },
                   child: Card(
@@ -651,7 +709,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
                       padding: EdgeInsets.symmetric(horizontal: 15 * _sizeFactor),
                       child: Center(
                         child: Text(
-                          _endTime,
+                          _endTime.formatTimeOfDay,
                           textDirection: TextDirection.ltr,
                           style: TextStyle(
                             fontSize: 17 * _sizeFactor,
@@ -700,33 +758,6 @@ class _AddNewLafaState extends State<AddNewLafa> {
     polylines[id] = polyline;
   }
 
-  Future<void> _fitMarkers(CLocation startCoordinates, CLocation destinationCoordinates) async {
-    final LatLng offerLatLng = LatLng(
-      destinationCoordinates.lat,
-      destinationCoordinates.lang,
-    );
-
-    LatLngBounds bound;
-    if (offerLatLng.latitude > startCoordinates.lat && offerLatLng.longitude > startCoordinates.lang) {
-      bound = LatLngBounds(southwest: startCoordinates.toLatLng(), northeast: offerLatLng);
-    } else if (offerLatLng.longitude > startCoordinates.lang) {
-      bound = LatLngBounds(
-        southwest: LatLng(offerLatLng.latitude, startCoordinates.lang),
-        northeast: LatLng(startCoordinates.lat, offerLatLng.longitude),
-      );
-    } else if (offerLatLng.latitude > startCoordinates.lat) {
-      bound = LatLngBounds(
-        southwest: LatLng(startCoordinates.lat, offerLatLng.longitude),
-        northeast: LatLng(offerLatLng.latitude, startCoordinates.lang),
-      );
-    } else {
-      bound = LatLngBounds(southwest: offerLatLng, northeast: startCoordinates.toLatLng());
-    }
-
-    CameraUpdate u2 = CameraUpdate.newLatLngBounds(bound, 80);
-    return await _controller.animateCamera(u2);
-  }
-
   ///  Function to Convert image path to ` BitmapDescriptor` to can use it for icon in map.
   /// `Width` is an `int` datatype
   Future<BitmapDescriptor> getMarker(String path, {int width}) async {
@@ -735,13 +766,5 @@ class _AddNewLafaState extends State<AddNewLafa> {
     ui.FrameInfo fi = await codec.getNextFrame();
     final _data = (await fi.image.toByteData(format: ui.ImageByteFormat.png)).buffer.asUint8List();
     return BitmapDescriptor.fromBytes(_data);
-  }
-
-  Future<String> getJsonFile(String path) async {
-    return await rootBundle.loadString(path);
-  }
-
-  void setMapStyle(String mapStyle) {
-    _controller.setMapStyle(mapStyle);
   }
 }

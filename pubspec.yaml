@@ -5,16 +5,6 @@ description: A new Flutter project.
 # pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
 environment:
@@ -23,70 +13,69 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   fancy_shimmer_image:
     git:
       url: git://github.com/AhmedAbouelkher/fancy-shimmer-image.git
-  cupertino_icons: ^0.1.3
-  convex_bottom_bar: ^2.5.1
-  font_awesome_flutter: ^8.8.1
-  flutter_bloc: ^4.0.1
-  shared_preferences: ^0.5.7+3
-  edge_alert: ^0.0.1
-  date_time_format: ^1.0.0+4
-  device_preview: ^0.4.5
-  modal_progress_hud: ^0.1.3
-  carousel_slider: ^2.2.1
-  badges: ^1.1.1
-  image_picker: ^0.6.7+4
-  timer_count_down: ^1.0.2
-  dio: ^3.0.9
-  flutter_gradients: ^1.0.0+2
-  flutter_switch: ^0.1.1
-  flutter_platform_widgets: ^0.60.2
-  platform_action_sheet: ^0.0.3
-  shimmer: ^1.1.1
-  provider: ^4.3.2
-  flutter_svg: ^0.19.0
-  flutter_show_more: ^0.1.2
-  auto_size_text: ^2.1.0
-  equatable: ^1.2.5
-  url_launcher: ^5.5.3
-  flutter_plugin_android_lifecycle: ^1.0.9
-  sa_stateless_animation: ^1.0.1
-  blurrycontainer: ^0.0.1
-  supercharged: ^1.10.0
-  flutter_rating_bar: ^3.0.1+1
-  smooth_star_rating: ^1.1.1
-  intl: ^0.16.1
-  dotted_border: ^1.0.6
-  animated_text_kit: ^2.3.0
-  platform_date_picker: ^0.0.3
-  ##Google Maps
-  location: ^3.0.2
-  google_maps_flutter: ^1.0.2
-  google_maps_webservice: ^0.0.18
-  geolocator: ^6.0.0+1
   flutter_polyline_points:
     git:
       url: git://github.com/AhmedAbouelkher/flutter_polyline_points.git
-  # firebase_core: ^0.5.0
-
+  after_layout: ^1.0.7+2
+  animated_text_kit: ^2.3.0
+  auto_size_text: ^2.1.0
+  badges: ^1.1.1
+  blurrycontainer: ^0.0.1
+  carousel_slider: ^2.2.1
+  convex_bottom_bar: ^2.5.1
+  cupertino_icons: ^0.1.3
+  date_time_format: ^1.0.0+4
+  device_preview: ^0.4.5
+  dio: ^3.0.9
+  dotted_border: ^1.0.6
+  edge_alert: ^0.0.1
+  equatable: ^1.2.5
+  firebase_core: ^0.5.0+1
+  firebase_messaging: ^7.0.3
+  flutter_bloc: ^6.0.6
+  flutter_gradients: ^1.0.0+2
+  flutter_platform_widgets: ^0.60.2
+  flutter_plugin_android_lifecycle: ^1.0.9
+  flutter_rating_bar: ^3.0.1+1
+  flutter_show_more: ^0.1.2
+  flutter_staggered_animations: ^0.1.2
+  flutter_svg: ^0.19.0
+  flutter_switch: ^0.1.1
+  font_awesome_flutter: ^8.8.1
+  geolocator: ^6.0.0+1
+  google_maps_flutter: ^1.0.2
+  google_maps_webservice: ^0.0.18
+  image_picker: ^0.6.7+4
+  intl: ^0.16.1
+  location: ^3.0.2
+  modal_progress_hud: ^0.1.3
+  platform_action_sheet: ^0.0.3
+  platform_date_picker: ^0.0.3
+  provider: ^4.3.2
+  sa_stateless_animation: ^1.0.1
+  shared_preferences: ^0.5.7+3
+  shimmer: ^1.1.1
+  smooth_star_rating: ^1.1.1
+  supercharged: ^1.10.0
+  timer_count_down: ^1.0.2
+  url_launcher: ^5.5.3
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/Native/logo.png"
+  image_path: "assets/Native/icon.png"
 
 flutter_native_splash:
-  image: assets/Native/logo_vs.png
+  image: assets/Native/splash.png
   color: "#FFFFFF"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: "^0.7.3"
+  flutter_launcher_icons: ^0.8.1
   flutter_native_splash: ^0.1.9
 
 flutter:
@@ -94,15 +83,10 @@ flutter:
   assets:
     - assets/
     - assets/Native/
-    - assets/mapStyles/
-    - assets/MapStyle/
     - assets/MapPins/
-    - assets/screens/
-    - assets/icons/
-    - assets/vectors/
-    - assets/componants/
-    - assets/mock/
+    - assets/MapStyle/
     - lang/
+
   fonts:
     - family: Gadha
       fonts:
@@ -133,4 +117,3 @@ flutter:
           weight: 300
         - asset: fonts/Cairo/Cairo-ExtraLight.ttf
           weight: 200
-

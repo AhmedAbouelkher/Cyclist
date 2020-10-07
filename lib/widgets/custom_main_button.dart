@@ -60,7 +60,6 @@ class CustomMainButton extends StatelessWidget {
         height: height,
         padding: width == null ? padding : null,
         decoration: BoxDecoration(
-          gradient: bgColor != null ? null : CColors.gradient,
           color: bgColor,
           borderRadius: BorderRadius.all(
             Radius.circular(borderRaduis),

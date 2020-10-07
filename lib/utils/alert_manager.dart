@@ -20,7 +20,7 @@ void alertWithSuccess({BuildContext context, String msg, String desc}) {
     context,
     title: msg,
     icon: FontAwesomeIcons.check,
-    backgroundColor: CColors.blueStatusColor,
+    backgroundColor: CColors.darkGreenAccent,
     duration: EdgeAlert.LENGTH_SHORT,
     description: desc,
     gravity: EdgeAlert.TOP,

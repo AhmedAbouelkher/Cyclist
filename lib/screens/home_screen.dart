@@ -8,6 +8,8 @@ import 'package:cyclist/utils/locales/app_translations.dart';
 import 'package:cyclist/widgets/standered_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:cyclist/utils/extensions.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -30,6 +32,14 @@ class _HomeState extends State<Home> {
     final AppTranslations trs = AppTranslations.of(context);
     return Scaffold(
       appBar: StanderedAppBar(),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // final _l = DateFormat('H:m:s').format(DateTime.now());
+      //     // final _result = "2020-10-05 " + _l;
+      //     // print(DateFormat.jm().format(DateTime.parse("2020-10-05 " + _result)));
+      //     print(DateFormat('H:m:s').format(TimeOfDay.now().timeOfDayToDateTime()));
+      //   },
+      // ),
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.flip,
         backgroundColor: CColors.darkGreen,
@@ -44,11 +54,14 @@ class _HomeState extends State<Home> {
         onTap: (int i) => setState(() => _screenIndex = i),
       ),
       body: SafeArea(
-        child: IndexedStack(
-          index: _screenIndex,
-          children: _taps,
-        ),
+        child: _taps[_screenIndex],
       ),
+      // body: SafeArea(
+      //   child: IndexedStack(
+      //     index: _screenIndex,
+      //     children: _taps,
+      //   ),
+      // ),
     );
   }
 }

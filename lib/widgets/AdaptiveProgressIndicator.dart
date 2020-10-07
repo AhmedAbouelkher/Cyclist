@@ -17,7 +17,7 @@ class AdaptiveProgessIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isIOS = Theme.of(context).platform == TargetPlatform.iOS;
-    if (isIOS) {
+    if (false) {
       return Center(
         child: CupertinoActivityIndicator.partiallyRevealed(
           radius: cupetinoRadius ?? 13.0,

@@ -1,7 +1,5 @@
 import 'package:cyclist/screens/home_screen.dart';
-import 'package:cyclist/utils/images.dart';
 import 'package:cyclist/widgets/custom_page_transition.dart';
-import 'package:cyclist/widgets/standered_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -9,27 +7,37 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  // RemoteConfigService _remoteConfig;
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation<double> _animation;
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 1)).then(
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1200),
+    );
+    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController);
+    Future.delayed(Duration(milliseconds: 1300)).then(
       (value) {
         Navigator.pushReplacement(
           context,
           CustomPageRoute(
             builder: (_) => Home(),
+            duration: Duration(milliseconds: 350),
           ),
         );
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (_) => HomeScreen(),
-        //   ),
-        // );
       },
     );
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _animationController.forward();
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -44,15 +52,18 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         preferredSize: Size.fromHeight(0),
       ),
-      body: Center(
-        child: Text("Splash Screen"),
+      body: Align(
+        alignment: Alignment(0, 0),
+        child: AnimatedBuilder(
+          animation: _animation,
+          builder: (context, _) {
+            return Image.asset(
+              "assets/Native/csplash.png",
+              width: size.width * (0.3 + _animation.value * 0.4),
+            );
+          },
+        ),
       ),
-      // body: Center(
-      //   child: Image.asset(
-      //     Constants.logoV,
-      //     width: size.width * 0.6,
-      //   ),
-      // ),
     );
   }
 }

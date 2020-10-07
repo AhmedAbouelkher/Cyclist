@@ -28,7 +28,7 @@ class StanderedAppBar extends StatelessWidget implements PreferredSizeWidget {
     final Size size = MediaQuery.of(context).size;
     final AppTranslations trs = AppTranslations.of(context);
     Widget appBar = Container(
-      color: backgroundColor ?? CColors.appBarColor.withOpacity(0.65),
+      color: backgroundColor ?? CColors.darkGreen.withOpacity(0.65),
       height: size.height * 0.06,
       width: size.width,
       child: Padding(

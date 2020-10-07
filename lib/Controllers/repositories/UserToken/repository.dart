@@ -1,6 +1,11 @@
 import 'package:cyclist/Controllers/repositories/UserToken/api_client.dart';
+import 'package:cyclist/models/Rides/ride_post_request.dart';
+import 'package:cyclist/models/Rides/ride_response.dart';
+import 'package:cyclist/models/Rides/rides_response.dart';
+import 'package:cyclist/models/token_request_resonse.dart';
 import 'package:cyclist/utils/shared_perfs_provider.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 class HomeRepo {
   PreferenceUtils _prefs;
@@ -11,5 +16,42 @@ class HomeRepo {
     _prefs = PreferenceUtils.getInstance();
     _dio = Dio();
     _apiClient = HomeApiClient(dio: _dio, prefs: _prefs);
+  }
+
+  Future<Token> sendMobileToken({@required String mobileToken}) async {
+    try {
+      final value = _prefs.getValueWithKey("mobile_token");
+      if (value == null) {
+        final dataResp = await _apiClient.sendMobileToken(mobileToken: mobileToken);
+        final _resp = TokenResponse.fromJson(dataResp).token;
+        await _prefs.saveValueWithKey<String>("mobile_token", _resp.token);
+        return _resp;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
+  }
+
+  Future<Rides> getRides({String nextPageUrl}) async {
+    try {
+      final dataResp = await _apiClient.getRides();
+      return RidesResponse.fromJson(dataResp).rides;
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
+  }
+
+  Future<RideResponse> storeRide({@required RidePost ridePost}) async {
+    try {
+      final dataResp = await _apiClient.storeRide(ridePost: ridePost);
+      return RideResponse.fromJson(dataResp);
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
   }
 }

@@ -214,7 +214,7 @@
   "suggested": "مُقترح لك",
   "bicyle_befits": "تعلم عن فوائد ركوب الدراجة",
   "click_to_learn_more": "شاهد المزيد",
-  "bicycle_purchase_advice": "نصائح قبل شراء دراجكتك",
+  "bicycle_purchase_advice": "نصائح قبل شراء دراجتك",
   "add_new_lafa": "اضافة لفة جديدة",
   "time": "تحديد وقت الفة",
   "start_time": "وقت البداية",
@@ -229,5 +229,12 @@
   "choose_finish_line": "اختار خط نهاية الفة",
   "edit_choose_finish_line": "تعديل خط نهاية الفة",
   "back": "رجوع",
-  "add_lafa": "اضافة الفة"
+  "add_lafa": "اضافة الفة",
+  "retry": "اعادة المحاولة",
+  "no_rides": "لا يوجد ليدك لفات",
+  "ride_distance": "مسافة الفة",
+  "lafa_number": "لفة رقم",
+  "add_new_lafa_succeded": "تم اضافة لفة جديدة بنجاح",
+  "start_line": "خط بداية الفة",
+  "finish_line": "خط نهاية الفة"
 }

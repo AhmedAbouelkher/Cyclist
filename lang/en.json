@@ -225,5 +225,12 @@
   "choose_finish_line": "Pick Finish Line",
   "edit_choose_finish_line": "Edit Finish Line",
   "back": "Back",
-  "add_lafa": "Add Ride"
+  "add_lafa": "Add Ride",
+  "retry": "Refresh",
+  "no_rides": "You have no rides",
+  "ride_distance": "Ride Distance",
+  "lafa_number": "Ride Number",
+  "add_new_lafa_succeded": "You new ride was add successfuly",
+  "start_line": "Start Line",
+  "finish_line": "Finish Line"
 }

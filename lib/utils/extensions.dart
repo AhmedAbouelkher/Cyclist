@@ -16,6 +16,11 @@ extension ToPM_AM on TimeOfDay {
   TimeOfDay add({int hour = 0, int minute = 0}) {
     return this.replacing(hour: this.hour + (hour ?? 0), minute: this.minute + (minute ?? 0));
   }
+
+  DateTime timeOfDayToDateTime() {
+    final now = DateTime.now();
+    return new DateTime(now.year, now.month, now.day, this.hour, this.minute);
+  }
 }
 
 extension Length on num {

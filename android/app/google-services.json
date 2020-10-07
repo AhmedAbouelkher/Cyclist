@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "432735124521",
+    "firebase_url": "https://cyclist-ed638.firebaseio.com",
+    "project_id": "cyclist-ed638",
+    "storage_bucket": "cyclist-ed638.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432735124521:android:ad1ac2c092491f1f7fb038",
+        "android_client_info": {
+          "package_name": "com.example.cyclist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432735124521-3d9fpn3v53bq570uqlqmtek13vvkh5fv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-QjlLsAtz5MZUvxrD5Cow0FUgnsNyKAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "432735124521-3d9fpn3v53bq570uqlqmtek13vvkh5fv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "432735124521-ppjib223vcr2889pparljlj1g3i3bnm9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cyclist"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
