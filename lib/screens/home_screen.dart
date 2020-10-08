@@ -1,5 +1,5 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:cyclist/screens/home.dart';
+import 'package:cyclist/screens/HomeScreens/home.dart';
 import 'package:cyclist/screens/maps/map.dart';
 import 'package:cyclist/screens/services.dart';
 import 'package:cyclist/screens/settings_screen.dart';

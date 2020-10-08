@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           builder: (context, _) {
             return Image.asset(
               "assets/Native/csplash.png",
-              width: size.width * (0.3 + _animation.value * 0.4),
+              width: size.width * (0.5 + _animation.value * 0.2),
             );
           },
         ),

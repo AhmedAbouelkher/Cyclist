@@ -84,8 +84,8 @@ class HomeApiClient {
     }
   }
 
-  Future getPosts({@required PostType postType}) async {
-    final String _path = Constants.postsApi;
+  Future getPosts({@required PostType postType, String nextPageUrl}) async {
+    final String _path = nextPageUrl ?? Constants.postsApi;
     String _typePost;
     switch (postType) {
       case PostType.tool_kit:
@@ -96,17 +96,19 @@ class HomeApiClient {
         break;
     }
     try {
-      Response resp = await dio.get(_path,
-          options: Options(
-            followRedirects: false,
-            headers: {"Accept": 'application/json'},
-            validateStatus: (status) {
-              return status < 500;
-            },
-          ),
-          queryParameters: {
-            "type_post": _typePost,
-          });
+      Response resp = await dio.get(
+        _path,
+        options: Options(
+          followRedirects: false,
+          headers: {"Accept": 'application/json'},
+          validateStatus: (status) {
+            return status < 500;
+          },
+        ),
+        queryParameters: {
+          "type_post": _typePost,
+        },
+      );
 
       if (resp.statusCode == 200) {
         return resp.data;

@@ -46,7 +46,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
   void _onScroll() {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.position.pixels;
-    if (maxScroll - currentScroll <= 250) {
+    if (maxScroll - currentScroll <= 10) {
       if (_block) return;
       _block = true;
       print("#LOAD MORE DATA");

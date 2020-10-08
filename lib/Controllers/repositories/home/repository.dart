@@ -1,7 +1,8 @@
-import 'package:cyclist/Controllers/repositories/UserToken/api_client.dart';
+import 'package:cyclist/Controllers/repositories/home/api_client.dart';
 import 'package:cyclist/models/Rides/ride_post_request.dart';
 import 'package:cyclist/models/Rides/ride_response.dart';
 import 'package:cyclist/models/Rides/rides_response.dart';
+import 'package:cyclist/models/posts/posts_response.dart';
 import 'package:cyclist/models/token_request_resonse.dart';
 import 'package:cyclist/utils/shared_perfs_provider.dart';
 import 'package:dio/dio.dart';
@@ -16,6 +17,16 @@ class HomeRepo {
     _prefs = PreferenceUtils.getInstance();
     _dio = Dio();
     _apiClient = HomeApiClient(dio: _dio, prefs: _prefs);
+  }
+
+  Future<Posts> getPosts({@required PostType postType, String nextPageUrl}) async {
+    try {
+      final dataResp = await _apiClient.getPosts(postType: postType, nextPageUrl: nextPageUrl);
+      return PostsResponse.fromJson(dataResp).posts;
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
   }
 
   Future<Token> sendMobileToken({@required String mobileToken}) async {

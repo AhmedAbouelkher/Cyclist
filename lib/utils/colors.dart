@@ -32,14 +32,14 @@ class CColors {
   // static const Color activestarColor = const Color(0xFFFFA200);
   // @deprecated
   // static const Color inActiveButtonColor = const Color(0xFFD8D8D8);
-  @deprecated
-  static const Color inActivestarColor = const Color(0xFFD8D8D8);
-  @deprecated
-  static const Color inActiveCatColor = const Color(0xFFE0F3FF);
-  @deprecated
-  static const Color greenColor = const Color(0xFF5FE039);
-  @deprecated
-  static const Color darkGreenColor = const Color(0xFF0C922B);
+  // @deprecated
+  // static const Color inActivestarColor = const Color(0xFFD8D8D8);
+  // @deprecated
+  // static const Color inActiveCatColor = const Color(0xFFE0F3FF);
+  // @deprecated
+  // static const Color greenColor = const Color(0xFF5FE039);
+  // @deprecated
+  // static const Color darkGreenColor = const Color(0xFF0C922B);
   // @deprecated
   // static const LinearGradient gradient = LinearGradient(
   //   colors: [

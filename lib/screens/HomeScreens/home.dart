@@ -1,5 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:cyclist/screens/article.dart';
+import 'package:cyclist/Controllers/repositories/home/api_client.dart';
+import 'package:cyclist/screens/HomeScreens/article.dart';
+import 'package:cyclist/screens/HomeScreens/details_page.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
@@ -34,14 +36,16 @@ class _HomeTapState extends State<HomeTap> {
         HomeItem(
           coverImageUrl: "https://i.insider.com/58e1228877bb7028008b5aef?width=1100&format=jpeg&auto=webp",
           title: trs.translate("bicyle_befits"),
+          postType: PostType.tips_before_buying,
           onTap: () {
             Navigator.push(
                 context,
                 platformPageRoute(
                   context: context,
-                  builder: (context) => HomeArticl(
+                  builder: (context) => Articles(
+                    postType: PostType.tips_before_buying,
+                    title: trs.translate("bicyle_befits"),
                     coverImageUrl: "https://i.insider.com/58e1228877bb7028008b5aef?width=1100&format=jpeg&auto=webp",
-                    // title: trs.translate("bicyle_befits"),
                   ),
                 ));
           },
@@ -49,6 +53,7 @@ class _HomeTapState extends State<HomeTap> {
         HomeItem(
           coverImageUrl: "https://blog.mapmyrun.com/wp-content/uploads/2017/10/5-Handy-Tips-on-Buying-a-Used-Bike.jpg",
           title: trs.translate("bicycle_purchase_advice"),
+          postType: PostType.tool_kit,
           onTap: () {},
         ),
       ],
@@ -59,6 +64,7 @@ class _HomeTapState extends State<HomeTap> {
 class HomeItem extends StatelessWidget {
   final String coverImageUrl;
   final String title;
+  final PostType postType;
   final VoidCallback onTap;
 
   const HomeItem({
@@ -66,7 +72,9 @@ class HomeItem extends StatelessWidget {
     @required this.coverImageUrl,
     @required this.title,
     @required this.onTap,
-  }) : super(key: key);
+    @required this.postType,
+  })  : assert(postType != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -236,5 +236,7 @@
   "lafa_number": "لفة رقم",
   "add_new_lafa_succeded": "تم اضافة لفة جديدة بنجاح",
   "start_line": "خط بداية الفة",
-  "finish_line": "خط نهاية الفة"
+  "finish_line": "خط نهاية الفة",
+  "no_posts": "لا يوجد اي منشورات",
+  "refresh": "تحديث"
 }

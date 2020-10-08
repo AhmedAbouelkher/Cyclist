@@ -1,7 +1,8 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:cyclist/Controllers/blocs/MakeRide/makeride_bloc.dart';
+import 'package:cyclist/Controllers/blocs/Posts/posts_bloc.dart';
 import 'package:cyclist/Controllers/blocs/Rides/rides_bloc.dart';
-import 'package:cyclist/Controllers/repositories/UserToken/repository.dart';
+import 'package:cyclist/Controllers/repositories/home/repository.dart';
 import 'package:cyclist/Controllers/repositories/lang_repo.dart';
 import 'package:cyclist/Controllers/repositories/push_notifications.dart';
 import 'package:cyclist/screens/splash_screen.dart';
@@ -59,9 +60,6 @@ class _MyAppState extends State<MyApp> with AfterLayoutMixin<MyApp> {
     _homeRepo = HomeRepo();
     application.onLocaleChanged = onLocaleChange;
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: Locale('ar', 'ar'));
-    // HomeRepo().storeOrDestoryFav(prodId: 7);
-//    print('started');
-//    OrdersRepo().storDummyOrder().then((value) => print(value)).catchError((err)=>print(err.toString()));
 
     LangRepo().getLocaleCode().then((code) {
       setState(() {
@@ -73,14 +71,11 @@ class _MyAppState extends State<MyApp> with AfterLayoutMixin<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // PushNotificationService().initialise();
-    // print(_newLocaleDelegate.newLocale.languageCode);
-    // if (todos.length > 0) print(' you still have more todos');
-    // HomeRepo().storeOrDestoryFav(prodId: 7);
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => RidesBloc(homeRepo: _homeRepo)..add(LoadRides(key: UniqueKey()))),
         BlocProvider(create: (context) => MakerideBloc(homeRepo: _homeRepo)),
+        BlocProvider(create: (context) => PostsBloc(homeRepo: _homeRepo)),
       ],
       child: Directionality(
         textDirection: _newLocaleDelegate.newLocale.languageCode == 'ar' ? TextDirection.rtl : TextDirection.ltr,
@@ -124,10 +119,12 @@ class _MyAppState extends State<MyApp> with AfterLayoutMixin<MyApp> {
     Future.delayed(Duration(seconds: 10), () async {
       try {
         await PushNotificationService.instance.initialise();
-        _homeRepo.sendMobileToken(mobileToken: await PushNotificationService.instance.getToken());
       } catch (e) {
         print("#Error While Getting Notifications Permission $e");
       }
+      _homeRepo.sendMobileToken(mobileToken: await PushNotificationService.instance.getToken()).then((value) {}).catchError((e) {
+        print("ERROR WHILE SENDING DRVICE Token ID $e");
+      });
     });
   }
 }

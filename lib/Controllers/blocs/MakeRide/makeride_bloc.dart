@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:cyclist/Controllers/repositories/UserToken/repository.dart';
+import 'package:cyclist/Controllers/repositories/home/repository.dart';
 import 'package:cyclist/models/Rides/ride_post_request.dart';
 import 'package:cyclist/models/Rides/ride_response.dart';
 import 'package:equatable/equatable.dart';
