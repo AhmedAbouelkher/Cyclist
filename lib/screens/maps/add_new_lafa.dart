@@ -155,7 +155,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
                 ),
               ),
               _addDate(trs, context),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               _buildMap(cameraPosition, trs, context),
             ],
           ),
@@ -396,6 +396,50 @@ class _AddNewLafaState extends State<AddNewLafa> {
             },
           ),
           _buildMapControlles(trs, context),
+          Align(
+            alignment: Alignment(trs.isArabic ? -0.9 : 0.9, -0.5),
+            child: ClipOval(
+              child: Material(
+                color: CColors.darkGreenAccent, // button color
+                child: InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (builder) {
+                        return SafeArea(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 40),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ChooseMapStyle(
+                                  mapType: _mapType,
+                                  onChanged: (value) {
+                                    print(value);
+                                    setState(() => _mapType = value);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: SizedBox(
+                    width: 45,
+                    height: 45,
+                    child: Icon(
+                      FontAwesomeIcons.layerGroup,
+                      color: CColors.white,
+                      size: 15,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           if (_totalDistance != null) ...[
             Align(
               alignment: Alignment(trs.isArabic ? -0.95 : 0.95, -0.95),
@@ -448,48 +492,6 @@ class _AddNewLafaState extends State<AddNewLafa> {
         children: <Widget>[
           ClipOval(
             child: Material(
-              color: CColors.darkGreenAccent, // button color
-              child: InkWell(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (builder) {
-                      return SafeArea(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 40),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ChooseMapStyle(
-                                mapType: _mapType,
-                                onChanged: (value) {
-                                  print(value);
-                                  setState(() => _mapType = value);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: SizedBox(
-                  width: 45,
-                  height: 45,
-                  child: Icon(
-                    FontAwesomeIcons.layerGroup,
-                    color: CColors.white,
-                    size: 15,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 30),
-          ClipOval(
-            child: Material(
               color: CColors.darkGreenAccent,
               child: InkWell(
                 child: SizedBox(
@@ -527,7 +529,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
               ),
             ),
           ),
-          SizedBox(height: 150),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.1),
           ClipOval(
             child: Material(
               color: CColors.darkGreenAccent,
@@ -594,7 +596,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
               children: [
                 FaIcon(FontAwesomeIcons.biking, color: CColors.darkGreenAccent),
                 SizedBox(width: 10),
-                Text(trs.translate("add_new_lafa"), style: TextStyle(color: CColors.boldBlack, fontSize: 18)),
+                Text(trs.translate("add_new_lafa"), style: TextStyle(color: CColors.boldBlack, fontSize: 20)),
               ],
             ),
           ),

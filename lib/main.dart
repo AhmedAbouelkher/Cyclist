@@ -1,4 +1,5 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:cyclist/Controllers/blocs/Categories/categories_bloc.dart';
 import 'package:cyclist/Controllers/blocs/MakeRide/makeride_bloc.dart';
 import 'package:cyclist/Controllers/blocs/Posts/posts_bloc.dart';
 import 'package:cyclist/Controllers/blocs/Rides/rides_bloc.dart';
@@ -74,6 +75,7 @@ class _MyAppState extends State<MyApp> with AfterLayoutMixin<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => RidesBloc(homeRepo: _homeRepo)..add(LoadRides(key: UniqueKey()))),
+        BlocProvider(create: (context) => CategoriesBloc(homeRepo: _homeRepo)..add(LoadCategories())),
         BlocProvider(create: (context) => MakerideBloc(homeRepo: _homeRepo)),
         BlocProvider(create: (context) => PostsBloc(homeRepo: _homeRepo)),
       ],

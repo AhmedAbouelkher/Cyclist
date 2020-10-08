@@ -11,6 +11,7 @@ class ServicesTap extends StatefulWidget {
 class _ServicesTapState extends State<ServicesTap> {
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final Size size = MediaQuery.of(context).size;
     final AppTranslations trs = AppTranslations.of(context);
     return Column(

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:cyclist/Controllers/blocs/Posts/posts_bloc.dart';
-import 'package:cyclist/Controllers/repositories/home/api_client.dart';
 import 'package:cyclist/models/posts/posts_response.dart';
 import 'package:cyclist/screens/HomeScreens/article.dart';
 import 'package:cyclist/utils/colors.dart';
@@ -14,29 +13,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:flutter_show_more/flutter_show_more.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cyclist/utils/extensions.dart';
 
-class Articles extends StatefulWidget {
+class Article extends StatefulWidget {
   final String title;
   final String coverImageUrl;
-  final PostType postType;
-  const Articles({Key key, this.title, this.coverImageUrl, this.postType}) : super(key: key);
+  final int categoryId;
+  const Article({Key key, this.title, this.coverImageUrl, this.categoryId}) : super(key: key);
 
   @override
-  _ArticlesState createState() => _ArticlesState();
+  _ArticleState createState() => _ArticleState();
 }
 
-class _ArticlesState extends State<Articles> {
+class _ArticleState extends State<Article> {
   ScrollController _scrollController;
   Completer<void> _refreshCompleter;
   @override
   void initState() {
     _refreshCompleter = Completer<void>();
     _scrollController = ScrollController()..addListener(_onScroll);
-    BlocProvider.of<PostsBloc>(context).add(LoadPosts(
-      postType: widget.postType,
-    ));
+    BlocProvider.of<PostsBloc>(context).add(LoadPosts(categoryId: widget.categoryId, status: "initial"));
     super.initState();
   }
 
@@ -54,9 +53,7 @@ class _ArticlesState extends State<Articles> {
       if (_block) return;
       _block = true;
       print("#LOAD MORE DATA");
-      BlocProvider.of<PostsBloc>(context).add(LoadPosts(
-        postType: widget.postType,
-      ));
+      BlocProvider.of<PostsBloc>(context).add(LoadPosts(categoryId: widget.categoryId, status: "initial"));
     }
   }
 
@@ -69,13 +66,11 @@ class _ArticlesState extends State<Articles> {
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
-            pinned: false,
-            floating: true,
             delegate: NetworkingPageHeader(
               minExtent: 150.0,
               maxExtent: 250.0,
               coverImageUrl: widget.coverImageUrl,
-              title: widget?.title ?? "تعلم عن فوائد ركوب الدراجة",
+              title: widget.title,
             ),
           ),
           SliverToBoxAdapter(child: SizedBox(height: size.height * 0.02)),
@@ -106,7 +101,7 @@ class _ArticlesState extends State<Articles> {
                     message: trs.translate("rating_error"),
                     buttomText: trs.translate("refresh"),
                     onReload: () async {
-                      BlocProvider.of<PostsBloc>(context).add(LoadPosts(postType: widget.postType, status: "refresh"));
+                      BlocProvider.of<PostsBloc>(context).add(LoadPosts(categoryId: widget.categoryId, status: "refresh"));
                     },
                   );
                 } else if (state is PostsLoaded) {
@@ -134,7 +129,7 @@ class _ArticlesState extends State<Articles> {
                             position: index,
                             duration: const Duration(milliseconds: 500),
                             child: SlideAnimation(
-                              horizontalOffset: -100.0,
+                              verticalOffset: -50.0,
                               child: FadeInAnimation(
                                 child: Container(
                                   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -153,17 +148,36 @@ class _ArticlesState extends State<Articles> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: ListTile(
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                                       onTap: () {
                                         Navigator.push(
                                             context,
                                             platformPageRoute(
                                               context: context,
-                                              builder: (context) => HomeArticl(),
+                                              builder: (context) => HomeArticl(
+                                                post: post,
+                                              ),
                                             ));
                                       },
                                       leading: CircleAvatar(
                                         radius: 30,
-                                        child: Text("#${post.id}"),
+                                        backgroundImage: NetworkImage(post.imageHeader),
+                                      ),
+                                      title: Text(post.titel),
+                                      subtitle: ShowMoreText(
+                                        post.post * 3,
+                                        maxLength: 30,
+                                        style: TextStyle(fontSize: 12),
+                                        showMoreText: '',
+                                      ),
+                                      trailing: Text(
+                                        trs.translate("published_in") + "\n" + post.createdAt.daySlashMonthSlashYear,
+                                        textDirection: TextDirection.ltr,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: CColors.boldBlack,
+                                          fontSize: 12,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -212,7 +226,7 @@ class NetworkingPageHeader implements SliverPersistentHeaderDelegate {
           child: FancyShimmerImage(
             imageUrl: coverImageUrl,
             boxFit: BoxFit.cover,
-            shimmerBaseColor: Colors.grey[200],
+            shimmerBaseColor: Colors.grey[300],
             shimmerHighlightColor: Colors.grey[100],
           ),
         ),

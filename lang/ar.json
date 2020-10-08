@@ -238,5 +238,9 @@
   "start_line": "خط بداية الفة",
   "finish_line": "خط نهاية الفة",
   "no_posts": "لا يوجد اي منشورات",
-  "refresh": "تحديث"
+  "refresh": "تحديث",
+  "published_in": "نُشر في",
+  "images": "الصور",
+  "videos": "مقاطع الفيديو",
+  "no_categories": "لا يوجد اي محتوي"
 }

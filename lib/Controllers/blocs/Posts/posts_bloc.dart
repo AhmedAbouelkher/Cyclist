@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cyclist/Controllers/repositories/home/api_client.dart';
 import 'package:cyclist/Controllers/repositories/home/repository.dart';
 import 'package:cyclist/models/posts/posts_response.dart';
 import 'package:equatable/equatable.dart';
@@ -28,9 +27,11 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
           yield* _mapEventToStateNoLoading(event: event);
         } else if (event.status == "swipe-refresh") {
           yield* _mapEventToStateNoLoading(event: event);
+        } else if (event.status == "initial") {
+          yield* _mapEventToState(event: event);
         } else if (currentState.nextPageUrl != null) {
           try {
-            final _result = await homeRepo.getPosts(postType: event.postType, nextPageUrl: currentState.nextPageUrl);
+            final _result = await homeRepo.getPosts(categoryId: event.categoryId, nextPageUrl: currentState.nextPageUrl);
             yield PostsLoaded(
               key: UniqueKey(),
               posts: currentState.posts + _result.data,
@@ -51,7 +52,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   Stream<PostsState> _mapEventToState({LoadPosts event}) async* {
     yield LoadingPosts();
     try {
-      final result = await homeRepo.getPosts(postType: event.postType);
+      final result = await homeRepo.getPosts(categoryId: event.categoryId);
       yield PostsLoaded(
         key: UniqueKey(),
         posts: result.data,
@@ -67,7 +68,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
 
   Stream<PostsState> _mapEventToStateNoLoading({LoadPosts event}) async* {
     try {
-      final result = await homeRepo.getPosts(postType: event.postType);
+      final result = await homeRepo.getPosts(categoryId: event.categoryId);
       yield PostsLoaded(
         key: UniqueKey(),
         posts: result.data,

@@ -1,4 +1,5 @@
 import 'package:cyclist/Controllers/repositories/home/api_client.dart';
+import 'package:cyclist/models/Categories/categories_response.dart';
 import 'package:cyclist/models/Rides/ride_post_request.dart';
 import 'package:cyclist/models/Rides/ride_response.dart';
 import 'package:cyclist/models/Rides/rides_response.dart';
@@ -19,9 +20,9 @@ class HomeRepo {
     _apiClient = HomeApiClient(dio: _dio, prefs: _prefs);
   }
 
-  Future<Posts> getPosts({@required PostType postType, String nextPageUrl}) async {
+  Future<Posts> getPosts({@required int categoryId, String nextPageUrl}) async {
     try {
-      final dataResp = await _apiClient.getPosts(postType: postType, nextPageUrl: nextPageUrl);
+      final dataResp = await _apiClient.getPosts(categoryId: categoryId, nextPageUrl: nextPageUrl);
       return PostsResponse.fromJson(dataResp).posts;
     } catch (e) {
       print(e);
@@ -50,6 +51,16 @@ class HomeRepo {
     try {
       final dataResp = await _apiClient.getRides();
       return RidesResponse.fromJson(dataResp).rides;
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
+  }
+
+  Future<Categories> getCategories({String nextPageUrl}) async {
+    try {
+      final dataResp = await _apiClient.getCategories(nextPageUrl: nextPageUrl);
+      return CategoriesResponse.fromJson(dataResp).categories;
     } catch (e) {
       print(e);
       return Future.error(e);

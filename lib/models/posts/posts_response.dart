@@ -113,24 +113,32 @@ class Posts extends Equatable {
 class Post extends Equatable {
   Post({
     this.id,
+    this.titel,
+    this.imageHeader,
     this.post,
     this.createdAt,
     this.media,
   });
 
   final int id;
+  final String titel;
+  final String imageHeader;
   final String post;
-  final String createdAt;
+  final DateTime createdAt;
   final List<Media> media;
 
   Post copyWith({
     int id,
+    String titel,
+    String imageHeader,
     String post,
-    String createdAt,
+    DateTime createdAt,
     List<Media> media,
   }) =>
       Post(
         id: id ?? this.id,
+        titel: titel ?? this.titel,
+        imageHeader: imageHeader ?? this.imageHeader,
         post: post ?? this.post,
         createdAt: createdAt ?? this.createdAt,
         media: media ?? this.media,
@@ -138,64 +146,73 @@ class Post extends Equatable {
 
   factory Post.fromJson(Map<String, dynamic> json) => Post(
         id: json["id"] == null ? null : json["id"],
+        titel: json["titel"] == null ? null : json["titel"],
+        imageHeader: json["image_header"] == null ? null : "http://alaglate.ainzimati.tk" + json["image_header"],
         post: json["post"] == null ? null : json["post"],
-        createdAt: json["created_at"] == null ? null : json["created_at"],
+        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
         media: json["media"] == null ? null : List<Media>.from(json["media"].map((x) => Media.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id == null ? null : id,
+        "titel": titel == null ? null : titel,
+        "image_header": imageHeader == null ? null : imageHeader,
         "post": post == null ? null : post,
-        "created_at": createdAt == null ? null : createdAt,
+        "created_at": createdAt == null ? null : createdAt.toIso8601String(),
         "media": media == null ? null : List<dynamic>.from(media.map((x) => x.toJson())),
       };
-
   @override
   List<Object> get props => [
         this.id,
+        this.titel,
+        this.imageHeader,
         this.post,
         this.createdAt,
         this.media,
       ];
 }
 
+enum MediaType { image, video }
+
 class Media extends Equatable {
   Media({
-    this.id,
     this.mimeType,
-    this.file,
+    this.path,
   });
 
-  final int id;
   final String mimeType;
-  final String file;
+  final String path;
 
   Media copyWith({
-    int id,
     String mimeType,
     String file,
   }) =>
       Media(
-        id: id ?? this.id,
         mimeType: mimeType ?? this.mimeType,
-        file: file ?? this.file,
+        path: file ?? this.path,
       );
 
   factory Media.fromJson(Map<String, dynamic> json) => Media(
-        id: json["id"] == null ? null : json["id"],
         mimeType: json["mime_type"] == null ? null : json["mime_type"],
-        file: json["file"] == null ? null : json["file"],
+        path: json["file"] == null ? null : "http://alaglate.ainzimati.tk" + json["file"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
         "mime_type": mimeType == null ? null : mimeType,
-        "file": file == null ? null : file,
+        "file": path == null ? null : path,
       };
+
+  MediaType get madiaType {
+    if (mimeType.contains("video")) {
+      return MediaType.video;
+    } else {
+      return MediaType.image;
+    }
+  }
+
   @override
   List<Object> get props => [
-        this.id,
         this.mimeType,
-        this.file,
+        this.path,
       ];
 }

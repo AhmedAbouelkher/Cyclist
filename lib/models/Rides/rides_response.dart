@@ -204,10 +204,10 @@ class Ride extends Equatable {
 
   factory Ride.fromJson(Map<String, dynamic> json) => Ride(
         id: json["id"] == null ? null : json["id"],
-        longitudeStart: json["longitude_start"] == null ? null : double.parse((json["longitude_start"]).toString()),
-        latitudeStart: json["latitude_start"] == null ? null : double.parse((json["latitude_start"]).toString()),
-        longitudeFinish: json["longitude_finish"] == null ? null : double.parse((json["longitude_finish"]).toString()),
-        latitudeFinish: json["latitude_finish"] == null ? null : double.parse((json["latitude_finish"]).toString()),
+        longitudeStart: json["longitude_start"] == null ? null : double.parse(json["longitude_start"]),
+        latitudeStart: json["latitude_start"] == null ? null : double.parse(json["latitude_start"]),
+        longitudeFinish: json["longitude_finish"] == null ? null : double.parse(json["longitude_finish"]),
+        latitudeFinish: json["latitude_finish"] == null ? null : double.parse(json["latitude_finish"]),
         addressFinish: json["address_finish"] == null ? null : json["address_finish"],
         addressStart: json["address_start"] == null ? null : json["address_start"],
         startAt: json["start_at"] == null ? null : DateFormat.jm().format(DateTime.parse("2020-10-06 " + json["start_at"])),

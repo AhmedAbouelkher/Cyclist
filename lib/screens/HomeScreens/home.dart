@@ -1,11 +1,15 @@
+import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:cyclist/Controllers/repositories/home/api_client.dart';
-import 'package:cyclist/screens/HomeScreens/article.dart';
-import 'package:cyclist/screens/HomeScreens/details_page.dart';
+import 'package:cyclist/Controllers/blocs/Categories/categories_bloc.dart';
+import 'package:cyclist/models/Categories/categories_response.dart';
+import 'package:cyclist/screens/HomeScreens/posts.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
+import 'package:cyclist/widgets/AdaptiveProgressIndicator.dart';
+import 'package:cyclist/widgets/center_err.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,11 +19,40 @@ class HomeTap extends StatefulWidget {
 }
 
 class _HomeTapState extends State<HomeTap> {
+  ScrollController _scrollController;
+  Completer<void> _refreshCompleter;
+
+  @override
+  void initState() {
+    _refreshCompleter = Completer<void>();
+    _scrollController = ScrollController()..addListener(_onScroll);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController?.dispose();
+    super.dispose();
+  }
+
+  bool _block = false;
+  void _onScroll() {
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+    if (maxScroll - currentScroll <= 0) {
+      if (_block) return;
+      _block = true;
+      print("#LOAD MORE DATA");
+      BlocProvider.of<CategoriesBloc>(context).add(LoadCategories(status: "initial"));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final Size size = MediaQuery.of(context).size;
     final AppTranslations trs = AppTranslations.of(context);
-    return ListView(
+    return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 20),
@@ -33,28 +66,77 @@ class _HomeTapState extends State<HomeTap> {
           ),
         ),
         SizedBox(height: 20),
-        HomeItem(
-          coverImageUrl: "https://i.insider.com/58e1228877bb7028008b5aef?width=1100&format=jpeg&auto=webp",
-          title: trs.translate("bicyle_befits"),
-          postType: PostType.tips_before_buying,
-          onTap: () {
-            Navigator.push(
-                context,
-                platformPageRoute(
-                  context: context,
-                  builder: (context) => Articles(
-                    postType: PostType.tips_before_buying,
-                    title: trs.translate("bicyle_befits"),
-                    coverImageUrl: "https://i.insider.com/58e1228877bb7028008b5aef?width=1100&format=jpeg&auto=webp",
-                  ),
-                ));
-          },
-        ),
-        HomeItem(
-          coverImageUrl: "https://blog.mapmyrun.com/wp-content/uploads/2017/10/5-Handy-Tips-on-Buying-a-Used-Bike.jpg",
-          title: trs.translate("bicycle_purchase_advice"),
-          postType: PostType.tool_kit,
-          onTap: () {},
+        Expanded(
+          child: BlocConsumer<CategoriesBloc, CategoriesState>(
+            listener: (context, state) {
+              if (state is LoadingCategories || state is CategoriesInitial) {
+                _block = true;
+              } else if (state is LoadingCategoriesFailed) {
+                _block = false;
+                _refreshCompleter?.complete();
+                _refreshCompleter = Completer();
+              } else if (state is CategoriesLoaded) {
+                _block = false;
+                _refreshCompleter?.complete();
+                _refreshCompleter = Completer();
+              }
+            },
+            builder: (context, state) {
+              if (state is LoadingCategories || state is CategoriesInitial) {
+                return AdaptiveProgessIndicator();
+              } else if (state is LoadingCategoriesFailed) {
+                print(state.message);
+                return CenterError(
+                  margin: EdgeInsets.only(top: 100),
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  icon: FontAwesomeIcons.heartBroken,
+                  message: trs.translate("rating_error"),
+                  buttomText: trs.translate("refresh"),
+                  onReload: () async {
+                    BlocProvider.of<CategoriesBloc>(context).add(LoadCategories(status: "refresh"));
+                  },
+                );
+              } else if (state is CategoriesLoaded) {
+                final List<Category> categories = state.categories;
+                if (categories.isEmpty) {
+                  return CenterError(
+                    margin: EdgeInsets.only(top: 100),
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    icon: FontAwesomeIcons.heartBroken,
+                    message: trs.translate("no_categories"),
+                  );
+                }
+                return ListView.builder(
+                  controller: _scrollController,
+                  itemCount: state.hasNextPage ? categories.length + 1 : categories.length,
+                  itemBuilder: (context, index) {
+                    if (index >= categories.length) {
+                      return AdaptiveProgessIndicator();
+                    }
+                    final catrgory = categories[index];
+                    return HomeItem(
+                      coverImageUrl: catrgory.imageHeader,
+                      title: catrgory.name,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          platformPageRoute(
+                            context: context,
+                            builder: (context) => Article(
+                              categoryId: catrgory.id,
+                              coverImageUrl: catrgory.imageHeader,
+                              title: catrgory.name,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                );
+              }
+              return AdaptiveProgessIndicator();
+            },
+          ),
         ),
       ],
     );
@@ -64,7 +146,7 @@ class _HomeTapState extends State<HomeTap> {
 class HomeItem extends StatelessWidget {
   final String coverImageUrl;
   final String title;
-  final PostType postType;
+
   final VoidCallback onTap;
 
   const HomeItem({
@@ -72,9 +154,7 @@ class HomeItem extends StatelessWidget {
     @required this.coverImageUrl,
     @required this.title,
     @required this.onTap,
-    @required this.postType,
-  })  : assert(postType != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,15 +1,12 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:cyclist/screens/HomeScreens/home.dart';
 import 'package:cyclist/screens/maps/map.dart';
-import 'package:cyclist/screens/services.dart';
 import 'package:cyclist/screens/settings_screen.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
 import 'package:cyclist/widgets/standered_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
-import 'package:cyclist/utils/extensions.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -22,7 +19,7 @@ class _HomeState extends State<Home> {
   int _screenIndex = 0;
   final List<Widget> _taps = [
     HomeTap(),
-    ServicesTap(),
+    // ServicesTap(),
     HalaLafaTap(),
     // NotificationsTap(),
     SettingScreen(),
@@ -45,8 +42,8 @@ class _HomeState extends State<Home> {
         backgroundColor: CColors.darkGreen,
         items: [
           TabItem(icon: Icons.home, title: trs.translate("home_screen")),
-          TabItem(icon: FontAwesomeIcons.wrench, title: trs.translate("service")),
-          TabItem(icon: FontAwesomeIcons.mapMarkedAlt, title: trs.translate("yala_lafa")),
+          // TabItem(icon: FontAwesomeIcons.wrench, title: trs.translate("service")),
+          TabItem(icon: FontAwesomeIcons.mapMarkerAlt, title: trs.translate("yala_lafa")),
           // TabItem(icon: Icons.notifications, title: trs.translate("notifications")),
           TabItem(icon: Icons.settings, title: trs.translate("settings")),
         ],

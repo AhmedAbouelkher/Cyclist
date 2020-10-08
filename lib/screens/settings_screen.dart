@@ -154,6 +154,7 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
+  // ignore: unused_element
   Future<void> _launchURL(String path) async {
     String langCode = await LangRepo().getLocaleCode();
     final url = 'https://www.mazajasly.com/$langCode/$path';

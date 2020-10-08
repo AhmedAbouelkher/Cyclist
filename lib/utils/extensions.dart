@@ -28,7 +28,7 @@ extension Length on num {
     if (this < 1000) {
       return (this.round().toString()) + " m";
     }
-    return (this / 1000).toStringAsFixed(1) + " K.m";
+    return (this / 1000).toStringAsFixed(1) + " km";
   }
 }
 

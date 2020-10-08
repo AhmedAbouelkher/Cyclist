@@ -150,6 +150,21 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       icon: FontAwesomeIcons.heartBroken,
                       message: trs.translate("no_rides"),
+                      buttomText: trs.translate("add_new_lafa"),
+                      onReload: () async {
+                        Navigator.push(
+                          context,
+                          platformPageRoute(
+                            context: context,
+                            builder: (context) => AddNewLafa(
+                              currentUserLocation: _currentLocation,
+                              onChange: () {
+                                BlocProvider.of<RidesBloc>(context).add(LoadRides(key: UniqueKey(), status: "refresh"));
+                              },
+                            ),
+                          ),
+                        );
+                      },
                     );
                   }
                   return AnimationLimiter(

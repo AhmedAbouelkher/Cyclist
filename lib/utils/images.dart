@@ -32,7 +32,9 @@ class Constants {
 
   static const String homeApi = _websiteApi + "api/";
   static const String mobileTokenApi = _websiteApi + "api/MobileToke/";
+  @deprecated
   static const String postsApi = _websiteApi + "api/posts/";
+  static const String categoriesApi = _websiteApi + "api/categories/";
 
   ///`Post` and `Get` route
   static const String ridesApi = _websiteApi + "api/rides/";

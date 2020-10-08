@@ -9,14 +9,14 @@ abstract class PostsEvent extends Equatable {
 }
 
 class LoadPosts extends PostsEvent {
-  final PostType postType;
+  final int categoryId;
   final String status;
 
-  LoadPosts({this.postType, Key key, this.status}) : super(key: key);
+  LoadPosts({this.categoryId, Key key, this.status}) : super(key: key);
 
   @override
-  List<Object> get props => super.props + [postType, status];
+  List<Object> get props => super.props + [categoryId, status];
 
   @override
-  String toString() => "LoadPosts(postType: ${this.postType})";
+  String toString() => "LoadPosts(categoryId: ${this.categoryId})";
 }
