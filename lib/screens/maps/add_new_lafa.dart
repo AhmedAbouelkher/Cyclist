@@ -46,7 +46,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
   BitmapDescriptor pinLocationIcon;
   final _sizeFactor = 0.9;
   PageController _pageController;
-  final int globalIconsWidth = 60;
+  final int globalIconsWidth = 120;
 
   double _totalDistance;
   int _totalTime;
@@ -62,23 +62,21 @@ class _AddNewLafaState extends State<AddNewLafa> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(
-      viewportFraction: 0.75,
-    );
+    _pageController = PageController();
     _startTime = TimeOfDay.now();
     _endTime = TimeOfDay.fromDateTime(DateTime.now().add(Duration(hours: 3)));
     _date = DateTime.now();
-    _circles?.add(
-      Circle(
-        circleId: CircleId("home_circle"),
-        radius: 80,
-        zIndex: 1,
-        strokeColor: Colors.blue,
-        center: widget.currentUserLocation.toLatLng(),
-        fillColor: Colors.blue.withAlpha(40),
-        strokeWidth: 1,
-      ),
-    );
+    // _circles?.add(
+    //   Circle(
+    //     circleId: CircleId("home_circle"),
+    //     radius: 80,
+    //     zIndex: 1,
+    //     strokeColor: Colors.blue,
+    //     center: widget.currentUserLocation.toLatLng(),
+    //     fillColor: Colors.blue.withAlpha(40),
+    //     strokeWidth: 1,
+    //   ),
+    // );
   }
 
   Future<void> _toggleViews({bool finish = false}) async {
@@ -133,7 +131,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
                     SizedBox(width: 10),
                     Text(
                       trs.translate("time"),
-                      style: TextStyle(fontSize: 17 * _sizeFactor, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 17 * _sizeFactor * 0.8, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -149,7 +147,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
                     SizedBox(width: 10),
                     Text(
                       trs.translate("date"),
-                      style: TextStyle(fontSize: 17 * _sizeFactor, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 17 * _sizeFactor * 0.8, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -167,23 +165,24 @@ class _AddNewLafaState extends State<AddNewLafa> {
         child: PageView(
           controller: _pageController,
           physics: NeverScrollableScrollPhysics(),
+          pageSnapping: true,
           children: <Widget>[
-            Card(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              elevation: 0,
-              color: _markers.length < 1 ? CColors.boldBlackAccent : CColors.darkGreenAccent,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-              child: IgnorePointer(
-                ignoring: _markers.length < 1,
-                child: InkWell(
-                  onTap: () {
-                    _toggleViews();
-                  },
+            IgnorePointer(
+              ignoring: _markers.length < 1,
+              child: InkWell(
+                onTap: () {
+                  _toggleViews();
+                },
+                child: Card(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  elevation: 0,
+                  color: _markers.length < 1 ? CColors.boldBlackAccent : CColors.darkGreenAccent,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                   child: Center(
                     child: Text(
                       _markers.length < 1 ? trs.translate("choose_start_line") : trs.translate("edit_choose_start_line"),
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 18 * 0.7,
                         color: Colors.white,
                       ),
                     ),
@@ -191,119 +190,130 @@ class _AddNewLafaState extends State<AddNewLafa> {
                 ),
               ),
             ),
-            Card(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              elevation: 0,
-              color: _markers.length < 2 ? CColors.boldBlackAccent : CColors.darkGreenAccent,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-              child: Center(
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment(trs.isArabic ? 0.9 : -0.9, 0),
-                      child: IconButton(
-                        icon: Icon(trs.isArabic ? FontAwesomeIcons.solidArrowAltCircleRight : FontAwesomeIcons.solidArrowAltCircleLeft, color: Colors.white),
-                        onPressed: () {
-                          _toggleViews();
-                        },
+            InkWell(
+              onTap: () {
+                if (_markers.length < 2) return;
+                _toggleViews(finish: true);
+              },
+              child: Card(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                elevation: 0,
+                color: _markers.length < 2 ? CColors.boldBlackAccent : CColors.darkGreenAccent,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                child: Center(
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment(trs.isArabic ? 0.9 : -0.9, 0),
+                        child: IconButton(
+                          icon: Icon(trs.isArabic ? FontAwesomeIcons.solidArrowAltCircleRight : FontAwesomeIcons.solidArrowAltCircleLeft, color: Colors.white),
+                          onPressed: () {
+                            _toggleViews();
+                          },
+                        ),
                       ),
-                    ),
-                    // Align(alignment: Alignment(0.6, 0), child: Container(color: Colors.white, width: 0.5, height: 24)),
-                    Center(
-                      child: InkWell(
-                        onTap: () {
-                          _toggleViews(finish: true);
-                        },
+                      // Align(alignment: Alignment(0.6, 0), child: Container(color: Colors.white, width: 0.5, height: 24)),
+                      Center(
                         child: Text(
                           _markers.length < 2 ? trs.translate("choose_finish_line") : trs.translate("edit_choose_finish_line"),
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 18 * 0.7,
                             color: Colors.white,
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-            BlocConsumer<MakerideBloc, MakerideState>(
-              listener: (context, state) {
-                if (state is MakingNewRide) {
-                  setState(() => _isLoading = true);
-                } else if (state is MakingNewRideCompleted) {
-                  setState(() => _isLoading = false);
-                  alertWithSuccess(context: context, msg: trs.translate("add_new_lafa_succeded"));
-                  Navigator.pop(context);
-                  widget.onChange();
-                } else if (state is MakingRideFailed) {
-                  setState(() => _isLoading = false);
-                  alertWithErr(context: context, msg: trs.translate("rating_error"));
-                }
+            InkWell.noSplash(
+              onTap: () {
+                final _ride = RidePost(
+                  date: _date,
+                  endAt: _endTime,
+                  startAt: _startTime,
+                  longitudeFinish: _endLocation.lang,
+                  latitudeFinish: _endLocation.lat,
+                  longitudeStart: _startLocation.lang,
+                  latitudeStart: _startLocation.lat,
+                  addressFinish: _polylineResultExtended.routes.first.legs.first.endAddress,
+                  addressStart: _polylineResultExtended.routes.first.legs.first.startAddress,
+                );
+                print(_ride.toJson());
+                // return;
+                BlocProvider.of<MakerideBloc>(context).add(MakeNewRide(
+                  ride: RidePost(
+                    date: _date,
+                    endAt: _endTime,
+                    startAt: _startTime,
+                    longitudeFinish: _endLocation.lang,
+                    latitudeFinish: _endLocation.lat,
+                    longitudeStart: _startLocation.lang,
+                    latitudeStart: _startLocation.lat,
+                    addressFinish: _polylineResultExtended.routes.first.legs.first.endAddress,
+                    addressStart: _polylineResultExtended.routes.first.legs.first.startAddress,
+                  ),
+                  key: UniqueKey(),
+                ));
               },
-              builder: (context, state) {
-                return Card(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  elevation: 0,
-                  color: CColors.darkGreenAccent,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-                  child: Center(
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment(trs.isArabic ? 0.9 : -0.9, 0),
-                          child: IconButton(
-                            icon:
-                                Icon(trs.isArabic ? FontAwesomeIcons.solidArrowAltCircleRight : FontAwesomeIcons.solidArrowAltCircleLeft, color: Colors.white),
-                            onPressed: () => _toggleViews(finish: true),
+              child: BlocConsumer<MakerideBloc, MakerideState>(
+                listener: (context, state) {
+                  if (state is MakingNewRide) {
+                    setState(() => _isLoading = true);
+                  } else if (state is MakingNewRideCompleted) {
+                    setState(() => _isLoading = false);
+                    alertWithSuccess(context: context, msg: trs.translate("add_new_lafa_succeded"));
+                    Navigator.pop(context);
+                    widget.onChange();
+                  } else if (state is MakingRideFailed) {
+                    setState(() => _isLoading = false);
+                    alertWithErr(context: context, msg: trs.translate("rating_error"));
+                  }
+                },
+                builder: (context, state) {
+                  return Card(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    elevation: 0,
+                    color: CColors.darkGreenAccent,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                    child: Center(
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment(trs.isArabic ? 0.9 : -0.9, 0),
+                            child: IconButton(
+                              icon: Icon(trs.isArabic ? FontAwesomeIcons.solidArrowAltCircleRight : FontAwesomeIcons.solidArrowAltCircleLeft,
+                                  color: Colors.white),
+                              onPressed: () => _toggleViews(finish: true),
+                            ),
                           ),
-                        ),
-                        Center(
-                          child: InkWell.noSplash(
-                            onTap: () {
-                              final _ride = RidePost(
-                                date: _date,
-                                endAt: _endTime,
-                                startAt: _startTime,
-                                longitudeFinish: _endLocation.lang,
-                                latitudeFinish: _endLocation.lat,
-                                longitudeStart: _startLocation.lang,
-                                latitudeStart: _startLocation.lat,
-                                addressFinish: _polylineResultExtended.routes.first.legs.first.endAddress,
-                                addressStart: _polylineResultExtended.routes.first.legs.first.startAddress,
-                              );
-                              print(_ride.toJson());
-                              // return;
-                              BlocProvider.of<MakerideBloc>(context).add(MakeNewRide(
-                                ride: RidePost(
-                                  date: _date,
-                                  endAt: _endTime,
-                                  startAt: _startTime,
-                                  longitudeFinish: _endLocation.lang,
-                                  latitudeFinish: _endLocation.lat,
-                                  longitudeStart: _startLocation.lang,
-                                  latitudeStart: _startLocation.lat,
-                                  addressFinish: _polylineResultExtended.routes.first.legs.first.endAddress,
-                                  addressStart: _polylineResultExtended.routes.first.legs.first.startAddress,
-                                ),
-                                key: UniqueKey(),
-                              ));
-                            },
+                          Center(
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(trs.translate("add_lafa"), style: TextStyle(fontSize: 18, color: Colors.white)),
+                                Text(
+                                  trs.translate("add_lafa"),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18 * 0.7,
+                                  ),
+                                ),
                                 SizedBox(width: 10),
-                                Icon(FontAwesomeIcons.plus, color: Colors.white),
+                                Icon(
+                                  FontAwesomeIcons.plus,
+                                  color: Colors.white,
+                                  size: 17,
+                                ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -454,22 +464,24 @@ class _AddNewLafaState extends State<AddNewLafa> {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          FaIcon(FontAwesomeIcons.biking, color: CColors.darkGreenAccent, size: 17),
+                          FaIcon(FontAwesomeIcons.biking, color: CColors.darkGreenAccent, size: 17 * 0.8),
                           SizedBox(width: 5),
                           Text(
                             _totalDistance.getDistance,
                             textDirection: TextDirection.ltr,
+                            style: TextStyle(fontSize: 10),
                           ),
                         ],
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          FaIcon(FontAwesomeIcons.clock, color: CColors.darkGreenAccent, size: 17),
+                          FaIcon(FontAwesomeIcons.clock, color: CColors.darkGreenAccent, size: 17 * 0.8),
                           SizedBox(width: 5),
                           Text(
                             "${(_totalTime / 60).toStringAsFixed(0)} min",
                             textDirection: TextDirection.ltr,
+                            style: TextStyle(fontSize: 10),
                           ),
                         ],
                       ),
@@ -594,9 +606,9 @@ class _AddNewLafaState extends State<AddNewLafa> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FaIcon(FontAwesomeIcons.biking, color: CColors.darkGreenAccent),
+                FaIcon(FontAwesomeIcons.biking, color: CColors.darkGreenAccent, size: 17),
                 SizedBox(width: 10),
-                Text(trs.translate("add_new_lafa"), style: TextStyle(color: CColors.boldBlack, fontSize: 20)),
+                Text(trs.translate("add_new_lafa"), style: TextStyle(color: CColors.boldBlack, fontSize: 20 * 0.7)),
               ],
             ),
           ),
@@ -610,7 +622,12 @@ class _AddNewLafaState extends State<AddNewLafa> {
       padding: EdgeInsets.symmetric(horizontal: 10 * _sizeFactor),
       child: Row(
         children: [
-          Text(trs.translate("date_day")),
+          Text(
+            trs.translate("date_day"),
+            style: TextStyle(
+              fontSize: 10,
+            ),
+          ),
           SizedBox(width: 5),
           InkWell(
             onTap: () async {
@@ -635,7 +652,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
                     _date.dayMonthYearNonUSFormate,
                     textDirection: TextDirection.ltr,
                     style: TextStyle(
-                      fontSize: 17 * _sizeFactor,
+                      fontSize: 15 * _sizeFactor * 0.8,
                     ),
                   ),
                 ),
@@ -655,7 +672,12 @@ class _AddNewLafaState extends State<AddNewLafa> {
           Expanded(
             child: Row(
               children: [
-                Text(trs.translate("start_time")),
+                Text(
+                  trs.translate("start_time"),
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
                 SizedBox(width: 5),
                 InkWell(
                   onTap: () async {
@@ -678,7 +700,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
                           _startTime.formatTimeOfDay,
                           textDirection: TextDirection.ltr,
                           style: TextStyle(
-                            fontSize: 17 * _sizeFactor,
+                            fontSize: 15 * _sizeFactor * 0.8,
                           ),
                         ),
                       ),
@@ -691,7 +713,12 @@ class _AddNewLafaState extends State<AddNewLafa> {
           Expanded(
             child: Row(
               children: [
-                Text(trs.translate("end_time")),
+                Text(
+                  trs.translate("end_time"),
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
                 SizedBox(width: 5),
                 InkWell(
                   onTap: () async {
@@ -714,7 +741,7 @@ class _AddNewLafaState extends State<AddNewLafa> {
                           _endTime.formatTimeOfDay,
                           textDirection: TextDirection.ltr,
                           style: TextStyle(
-                            fontSize: 17 * _sizeFactor,
+                            fontSize: 15 * _sizeFactor * 0.8,
                           ),
                         ),
                       ),

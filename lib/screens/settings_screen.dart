@@ -92,7 +92,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   children: [
                     FaIcon(Icons.settings, color: CColors.darkGreenAccent),
                     SizedBox(width: 10),
-                    Text(trs.translate("settings"), style: TextStyle(color: CColors.boldBlack, fontSize: 18)),
+                    Text(trs.translate("settings"), style: TextStyle(color: CColors.boldBlack, fontSize: 18 * .8)),
                   ],
                 ),
               ),
@@ -105,7 +105,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       leading: Icon(FontAwesomeIcons.language),
                       title: Text(
                         trs.translate("app_lang"),
-                        style: TextStyle(fontSize: 13),
+                        style: TextStyle(fontSize: 13 * .8),
                       ),
                     ),
                   ),
@@ -118,7 +118,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     },
                     title: Text(
                       trs.translate("use_policy"),
-                      style: TextStyle(fontSize: 13),
+                      style: TextStyle(fontSize: 13 * .8),
                     ),
                   ),
                   // DviderRow(),

@@ -77,7 +77,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
             children: [
               FaIcon(FontAwesomeIcons.mapMarkerAlt, color: CColors.darkGreenAccent),
               SizedBox(width: 10),
-              Text(trs.translate("yala_lafa"), style: TextStyle(color: CColors.boldBlack, fontSize: 18)),
+              Text(trs.translate("yala_lafa"), style: TextStyle(color: CColors.boldBlack, fontSize: 18 * .8)),
             ],
           ),
         ),
@@ -102,8 +102,8 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
             label: Text(
               trs.translate("add_new_lafa"),
               style: TextStyle(
-                  // fontWeight: FontWeight.normal,
-                  ),
+                fontSize: 12,
+              ),
             ),
           ),
         ),
@@ -220,10 +220,12 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
                                         ),
                                       );
                                     },
-                                    leading: CircleAvatar(backgroundImage: AssetImage("assets/MapStyle/satellite_mode.png")),
+                                    // leading: CircleAvatar(backgroundImage: AssetImage("assets/MapStyle/satellite_mode.png")),
                                     title: Text(
                                       trs.translate("lafa_number") + "\t#${ride.id}\t",
-                                      style: TextStyle(),
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                      ),
                                     ),
                                     subtitle: _buildLafaBody(trs, ride),
                                     trailing: _buildLafaTrialing(_distance),
@@ -250,9 +252,9 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text(_distance, textDirection: TextDirection.ltr, style: TextStyle(color: CColors.boldBlack, fontSize: 14)),
+        Text(_distance, textDirection: TextDirection.ltr, style: TextStyle(color: CColors.boldBlack, fontSize: 14 * .7)),
         SizedBox(width: 4),
-        Icon(FontAwesomeIcons.locationArrow, color: CColors.darkGreen, size: 15)
+        Icon(FontAwesomeIcons.locationArrow, color: CColors.darkGreen, size: 15 * .7)
       ],
     );
   }
@@ -269,7 +271,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
           children: [
             Icon(
               FontAwesomeIcons.clock,
-              size: 14,
+              size: 14 * .8,
               color: CColors.darkGreenAccent,
             ),
             SizedBox(width: 10),
@@ -277,7 +279,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
               trs.translate("start_time") + ":\t",
               style: TextStyle(
                 color: CColors.boldBlackAccent,
-                fontSize: 12,
+                fontSize: 12 * 0.8,
               ),
             ),
             Text(
@@ -285,7 +287,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
               textDirection: TextDirection.ltr,
               style: TextStyle(
                 color: CColors.boldBlackAccent,
-                fontSize: 12,
+                fontSize: 12 * 0.8,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -296,7 +298,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
           children: [
             Icon(
               FontAwesomeIcons.clock,
-              size: 14,
+              size: 14 * .8,
               color: CColors.darkGreenAccent,
             ),
             SizedBox(width: 10),
@@ -304,7 +306,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
               trs.translate("end_time") + ":\t",
               style: TextStyle(
                 color: CColors.boldBlackAccent,
-                fontSize: 12,
+                fontSize: 12 * 0.8,
               ),
             ),
             Text(
@@ -312,7 +314,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
               textDirection: TextDirection.ltr,
               style: TextStyle(
                 color: CColors.boldBlackAccent,
-                fontSize: 12,
+                fontSize: 12 * 0.8,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -323,7 +325,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
           children: [
             Icon(
               FontAwesomeIcons.calendarAlt,
-              size: 14,
+              size: 14 * .8,
               color: CColors.darkGreenAccent,
             ),
             SizedBox(width: 10),
@@ -331,7 +333,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
               trs.translate("date_day") + ":\t",
               style: TextStyle(
                 color: CColors.boldBlackAccent,
-                fontSize: 12,
+                fontSize: 12 * 0.8,
               ),
             ),
             Text(
@@ -339,7 +341,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
               textDirection: TextDirection.ltr,
               style: TextStyle(
                 color: CColors.boldBlackAccent,
-                fontSize: 12,
+                fontSize: 12 * 0.8,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -350,7 +352,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
           children: [
             Icon(
               FontAwesomeIcons.biking,
-              size: 14,
+              size: 14 * .8,
               color: CColors.darkGreenAccent,
             ),
             SizedBox(width: 10),
@@ -358,7 +360,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
               trs.translate("ride_distance") + ":\t",
               style: TextStyle(
                 color: CColors.boldBlackAccent,
-                fontSize: 12,
+                fontSize: 12 * .8,
               ),
             ),
             Text(
@@ -366,7 +368,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
               textDirection: TextDirection.ltr,
               style: TextStyle(
                 color: CColors.boldBlackAccent,
-                fontSize: 12,
+                fontSize: 12 * .8,
                 fontWeight: FontWeight.bold,
               ),
             ),

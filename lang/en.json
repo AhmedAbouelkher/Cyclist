@@ -39,7 +39,6 @@
   "new_orders": "New Orders",
   "contact_us": "Contact us",
   "log_out": "Log out",
-  "home_tab": "Home Screen",
   "informations": "Informations",
   "reviews": "Reviews",
   "order_no": "Order number",
@@ -149,7 +148,6 @@
   "invalid_copuon": "Invalid Coupon",
   "choose_address": "Choose your address",
   "checkout_error": "There is an error",
-  "rating_error": "An error happened, try again later",
   "enter_search_key": "Enter product name",
   "search_results": "Search Results",
   "change_lan": "Change language",
@@ -232,5 +230,13 @@
   "lafa_number": "Ride Number",
   "add_new_lafa_succeded": "You new ride was add successfuly",
   "start_line": "Start Line",
-  "finish_line": "Finish Line"
+  "finish_line": "Finish Line",
+  "no_posts": " No Posts",
+  "refresh": "Refresh",
+  "published_in": "Publish in",
+  "images": "Images",
+  "videos": "Videos",
+  "no_categories": "There are no categories",
+  "rating_error": "An error happened, try again later",
+  "home_tab": "Home"
 }

@@ -95,7 +95,14 @@ class _ChooseMapStyleState extends State<ChooseMapStyle> {
             ],
           ),
         ),
-        Padding(padding: const EdgeInsets.only(top: 8), child: Text(title))
+        Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 10,
+              ),
+            ))
       ],
     );
   }

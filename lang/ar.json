@@ -39,7 +39,6 @@
   "new_orders": "الطلبات الجديدة",
   "contact_us": "اتصل بالإدارة",
   "log_out": "تسجيل الخروج",
-  "home_tab": "الصفحة الرئيسية",
   "informations": "المعلومات",
   "reviews": "اراء العملاء",
   "order_no": "طلب رقم",
@@ -149,7 +148,6 @@
   "invalid_copuon": "الكوبون غير صالح",
   "choose_address": "اختار العنوان الخاص بك",
   "checkout_error": "يوجد خطأ, راجع المًدخلات",
-  "rating_error": "حدث خطأ, حاول لاحقاً",
   "enter_search_key": "ادخل اسم المنتج",
   "search_results": "نتائج البحث",
   "change_lan": "تغير اللغة",
@@ -242,5 +240,7 @@
   "published_in": "نُشر في",
   "images": "الصور",
   "videos": "مقاطع الفيديو",
-  "no_categories": "لا يوجد اي محتوي"
+  "no_categories": "لا يوجد اي محتوي",
+  "home_tab": "الرئيسية",
+  "rating_error": "حدث خطأ, حاول لاحقاً"
 }

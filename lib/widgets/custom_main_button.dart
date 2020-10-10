@@ -47,7 +47,7 @@ class CustomMainButton extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: TextStyle(color: CColors.boldBlack, fontSize: textSize ?? 15),
+              style: TextStyle(color: CColors.boldBlack, fontSize: textSize ?? 15 * 0.8),
             ),
           ),
         ),
@@ -68,7 +68,7 @@ class CustomMainButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(color: Colors.white, fontSize: textSize ?? 15),
+            style: TextStyle(color: Colors.white, fontSize: textSize ?? 15 * 0.8),
           ),
         ),
       ),

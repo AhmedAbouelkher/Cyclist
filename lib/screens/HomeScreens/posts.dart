@@ -163,11 +163,14 @@ class _ArticleState extends State<Article> {
                                         radius: 30,
                                         backgroundImage: NetworkImage(post.imageHeader),
                                       ),
-                                      title: Text(post.titel),
-                                      subtitle: ShowMoreText(
-                                        post.post * 3,
-                                        maxLength: 30,
+                                      title: Text(
+                                        post.titel,
                                         style: TextStyle(fontSize: 12),
+                                      ),
+                                      subtitle: ShowMoreText(
+                                        post.post,
+                                        maxLength: 30,
+                                        style: TextStyle(fontSize: 12 * 0.7),
                                         showMoreText: '',
                                       ),
                                       trailing: Text(
@@ -176,7 +179,7 @@ class _ArticleState extends State<Article> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: CColors.boldBlack,
-                                          fontSize: 12,
+                                          fontSize: 12 * 0.7,
                                         ),
                                       ),
                                     ),
@@ -249,7 +252,7 @@ class NetworkingPageHeader implements SliverPersistentHeaderDelegate {
             title,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 25.0,
+              fontSize: 25.0 * 0.8,
               color: Colors.white.withOpacity(titleOpacity(shrinkOffset)),
             ),
           ),

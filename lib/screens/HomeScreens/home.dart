@@ -61,7 +61,7 @@ class _HomeTapState extends State<HomeTap> {
             children: [
               FaIcon(FontAwesomeIcons.home, color: CColors.darkGreenAccent),
               SizedBox(width: 10),
-              Text(trs.translate("home_tab"), style: TextStyle(color: CColors.boldBlack, fontSize: 18)),
+              Text(trs.translate("home_tab"), style: TextStyle(color: CColors.boldBlack, fontSize: 18 * 0.8)),
             ],
           ),
         ),
@@ -229,7 +229,7 @@ class HomeItem extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 35,
+                      fontSize: 35 * 0.6,
                       // fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -240,7 +240,7 @@ class HomeItem extends StatelessWidget {
                 child: FadeAnimatedTextKit(
                     text: [trs.translate("click_to_learn_more")],
                     repeatForever: true,
-                    textStyle: TextStyle(color: Colors.white),
+                    textStyle: TextStyle(color: Colors.white, fontSize: 14 * 0.8),
                     textAlign: TextAlign.center,
                     alignment: AlignmentDirectional.topStart // or Alignment.topLeft
                     ),

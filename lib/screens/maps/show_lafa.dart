@@ -43,7 +43,7 @@ class _ShowLafaState extends State<ShowLafa> {
   BitmapDescriptor pinLocationIcon;
   final _sizeFactor = 0.9;
 
-  final int globalIconsWidth = 60;
+  final int globalIconsWidth = 120;
 
   double _totalDistance;
   int _totalTime;
@@ -83,10 +83,7 @@ class _ShowLafaState extends State<ShowLafa> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final trs = AppTranslations.of(context);
-    var cameraPosition = CameraPosition(
-      zoom: 15.0,
-      target: widget.currentUserLocation.toLatLng(),
-    );
+    var cameraPosition = CameraPosition(zoom: 15.0, target: widget.ride.startLocation);
     return Scaffold(
       appBar: StanderedAppBar(),
       body: ModalProgressHUD(
@@ -107,7 +104,7 @@ class _ShowLafaState extends State<ShowLafa> {
                     SizedBox(width: 10),
                     Text(
                       trs.translate("time"),
-                      style: TextStyle(fontSize: 17 * _sizeFactor, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 17 * _sizeFactor * 0.8, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -123,7 +120,7 @@ class _ShowLafaState extends State<ShowLafa> {
                     SizedBox(width: 10),
                     Text(
                       trs.translate("date"),
-                      style: TextStyle(fontSize: 17 * _sizeFactor, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 17 * _sizeFactor * 0.8, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -218,6 +215,9 @@ class _ShowLafaState extends State<ShowLafa> {
                           Text(
                             _totalDistance.getDistance,
                             textDirection: TextDirection.ltr,
+                            style: TextStyle(
+                              fontSize: 10,
+                            ),
                           ),
                         ],
                       ),
@@ -229,6 +229,9 @@ class _ShowLafaState extends State<ShowLafa> {
                           Text(
                             "${(_totalTime / 60).toStringAsFixed(0)} min",
                             textDirection: TextDirection.ltr,
+                            style: TextStyle(
+                              fontSize: 10,
+                            ),
                           ),
                         ],
                       ),
@@ -353,9 +356,9 @@ class _ShowLafaState extends State<ShowLafa> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FaIcon(FontAwesomeIcons.biking, color: CColors.darkGreenAccent),
+                FaIcon(FontAwesomeIcons.biking, color: CColors.darkGreenAccent, size: 16),
                 SizedBox(width: 10),
-                Text(trs.translate("lafa_number") + "\t#${widget.ride.id}\t", style: TextStyle(color: CColors.boldBlack, fontSize: 20)),
+                Text(trs.translate("lafa_number") + "\t#${widget.ride.id}\t", style: TextStyle(color: CColors.boldBlack, fontSize: 20 * .8)),
               ],
             ),
           ),
@@ -366,10 +369,15 @@ class _ShowLafaState extends State<ShowLafa> {
 
   Widget _addDate(AppTranslations trs, BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10 * _sizeFactor),
+      padding: EdgeInsets.symmetric(horizontal: 10 * _sizeFactor * .8),
       child: Row(
         children: [
-          Text(trs.translate("date_day")),
+          Text(
+            trs.translate("date_day"),
+            style: TextStyle(
+              fontSize: 10,
+            ),
+          ),
           SizedBox(width: 5),
           Card(
             elevation: 2,
@@ -382,7 +390,7 @@ class _ShowLafaState extends State<ShowLafa> {
                   _date.dayMonthYearNonUSFormate,
                   textDirection: TextDirection.ltr,
                   style: TextStyle(
-                    fontSize: 17 * _sizeFactor,
+                    fontSize: 15 * _sizeFactor * .8,
                   ),
                 ),
               ),
@@ -401,20 +409,25 @@ class _ShowLafaState extends State<ShowLafa> {
           Expanded(
             child: Row(
               children: [
-                Text(trs.translate("start_time")),
+                Text(
+                  trs.translate("start_time"),
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
                 SizedBox(width: 5),
                 Card(
                   elevation: 2,
                   color: CColors.darkWhite,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15 * _sizeFactor),
+                    padding: EdgeInsets.symmetric(horizontal: 15 * _sizeFactor * .8),
                     child: Center(
                       child: Text(
                         _startTime,
                         textDirection: TextDirection.ltr,
                         style: TextStyle(
-                          fontSize: 17 * _sizeFactor,
+                          fontSize: 15 * _sizeFactor * .8,
                         ),
                       ),
                     ),
@@ -426,20 +439,25 @@ class _ShowLafaState extends State<ShowLafa> {
           Expanded(
             child: Row(
               children: [
-                Text(trs.translate("end_time")),
+                Text(
+                  trs.translate("end_time"),
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                ),
                 SizedBox(width: 5),
                 Card(
                   elevation: 2,
                   color: CColors.darkWhite,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15 * _sizeFactor),
+                    padding: EdgeInsets.symmetric(horizontal: 15 * _sizeFactor * .8),
                     child: Center(
                       child: Text(
                         _endTime,
                         textDirection: TextDirection.ltr,
                         style: TextStyle(
-                          fontSize: 17 * _sizeFactor,
+                          fontSize: 15 * _sizeFactor * .8,
                         ),
                       ),
                     ),

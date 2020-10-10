@@ -42,7 +42,7 @@ class _ChangeLangState extends State<ChangeLang> {
               Text(
                 trs.translate("choose_device_lang"),
                 style: TextStyle(
-                  fontSize: 17,
+                  fontSize: 17 * 0.8,
                 ),
               ),
               Row(

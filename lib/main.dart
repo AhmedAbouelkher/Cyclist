@@ -20,7 +20,6 @@ import 'package:cyclist/utils/locales/appliction.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
   await PreferenceUtils.init();
   runApp(DevicePreview(enabled: false, builder: (context) => MyApp()));
@@ -121,12 +120,13 @@ class _MyAppState extends State<MyApp> with AfterLayoutMixin<MyApp> {
     Future.delayed(Duration(seconds: 10), () async {
       try {
         await PushNotificationService.instance.initialise();
+        final _mobileToken = await PushNotificationService.instance.getToken();
+        _homeRepo.sendMobileToken(mobileToken: _mobileToken).catchError((e) {
+          print("ERROR WHILE SENDING DRVICE Token ID $e");
+        });
       } catch (e) {
         print("#Error While Getting Notifications Permission $e");
       }
-      _homeRepo.sendMobileToken(mobileToken: await PushNotificationService.instance.getToken()).then((value) {}).catchError((e) {
-        print("ERROR WHILE SENDING DRVICE Token ID $e");
-      });
     });
   }
 }

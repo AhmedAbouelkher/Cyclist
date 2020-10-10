@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
       //   },
       // ),
       bottomNavigationBar: ConvexAppBar(
-        style: TabStyle.flip,
+        style: TabStyle.titled,
         backgroundColor: CColors.darkGreen,
         items: [
           TabItem(icon: Icons.home, title: trs.translate("home_screen")),
