@@ -1,5 +1,6 @@
 import 'package:cyclist/Controllers/repositories/home/api_client.dart';
 import 'package:cyclist/models/Categories/categories_response.dart';
+import 'package:cyclist/models/Rides/ride_data.dart';
 import 'package:cyclist/models/Rides/ride_post_request.dart';
 import 'package:cyclist/models/Rides/ride_response.dart';
 import 'package:cyclist/models/Rides/rides_response.dart';
@@ -61,6 +62,27 @@ class HomeRepo {
     try {
       final dataResp = await _apiClient.getCategories(nextPageUrl: nextPageUrl);
       return CategoriesResponse.fromJson(dataResp).categories;
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
+  }
+
+  Future<Comments> getComments({@required int rideId, String nextPageUrl}) async {
+    try {
+      final dataResp = await _apiClient.getComments(nextPageUrl: nextPageUrl, rideId: rideId);
+      return SpacificRide.fromJson(dataResp).comments;
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
+  }
+
+  Future<bool> makeComment({@required int rideId, @required String comment}) async {
+    try {
+      // ignore: unused_local_variable
+      final dataResp = (await _apiClient.makeComment(rideId: rideId, comment: comment))["message"];
+      return true;
     } catch (e) {
       print(e);
       return Future.error(e);

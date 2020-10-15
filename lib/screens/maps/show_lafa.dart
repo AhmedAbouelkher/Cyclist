@@ -2,23 +2,26 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:cyclist/GoeLocation/models.dart';
+import 'package:cyclist/Services/GoeLocation/models.dart';
 import 'package:cyclist/models/Rides/rides_response.dart';
+import 'package:cyclist/screens/maps/ride_comments.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/constants.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
+import 'package:cyclist/utils/shared_perfs_provider.dart';
 import 'package:cyclist/widgets/AdaptiveProgressIndicator.dart';
 import 'package:cyclist/widgets/map_style_picker.dart';
 import 'package:cyclist/widgets/standered_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:cyclist/GoeLocation/geo_locator.dart';
 import 'package:cyclist/utils/extensions.dart';
+import 'package:cyclist/Services/GoeLocation/geo_locator.dart';
 
 class ShowLafa extends StatefulWidget {
   final CLocation currentUserLocation;
@@ -31,6 +34,7 @@ class ShowLafa extends StatefulWidget {
 }
 
 class _ShowLafaState extends State<ShowLafa> {
+  final PreferenceUtils _prefs = PreferenceUtils.getInstance();
   bool _isLoading = false;
   GoogleMapController _controller;
   MapType _mapType = MapType.normal;
@@ -43,7 +47,7 @@ class _ShowLafaState extends State<ShowLafa> {
   BitmapDescriptor pinLocationIcon;
   final _sizeFactor = 0.9;
 
-  final int globalIconsWidth = 120;
+  final int globalIconsWidth = 100;
 
   double _totalDistance;
   int _totalTime;
@@ -240,13 +244,47 @@ class _ShowLafaState extends State<ShowLafa> {
                 ),
               ),
             ),
-          ]
+          ],
+          SafeArea(
+            child: Align(
+              alignment: Alignment(trs.isArabic ? -0.9 : 0.9, 0.9),
+              child: ClipOval(
+                child: Material(
+                  color: CColors.darkGreenAccent, // button color
+                  child: InkWell(
+                    child: SizedBox(
+                      // width: 45,
+                      // height: 45,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Icon(
+                          FontAwesomeIcons.commentDots,
+                          color: CColors.lightGreen,
+                          size: 25,
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          platformPageRoute(
+                            context: context,
+                            builder: (context) => RideComments(
+                              ride: widget.ride,
+                            ),
+                          ));
+                    },
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
   }
 
-  Align _buildMapControlles(AppTranslations trs, BuildContext context) {
+  Widget _buildMapControlles(AppTranslations trs, BuildContext context) {
     return Align(
       alignment: Alignment(trs.isArabic ? 0.9 : -0.9, 0.2),
       child: Column(
@@ -349,6 +387,19 @@ class _ShowLafaState extends State<ShowLafa> {
                         )),
                   ),
                 ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 20, 0),
+              child: CircleAvatar(
+                foregroundColor: Colors.white,
+                backgroundColor: CColors.darkGreenAccent,
+                child: Favorite(
+                    value: _prefs.getValueWithKey(widget.ride.id.toString(), hideDebugPrint: true) ?? false,
+                    onChanged: (value) => _prefs.saveValueWithKey<bool>(widget.ride.id.toString(), value)),
               ),
             ),
           ),
@@ -576,5 +627,61 @@ class _ShowLafaState extends State<ShowLafa> {
 
     setState(() {});
     _fitMarkers(_startLocation, _endLocation);
+  }
+}
+
+class Favorite extends StatefulWidget {
+  final bool value;
+  final void Function(bool value) onChanged;
+
+  const Favorite({
+    Key key,
+    @required this.value,
+    @required this.onChanged,
+  }) : super(key: key);
+  @override
+  _FavoriteState createState() => _FavoriteState();
+}
+
+class _FavoriteState extends State<Favorite> {
+  bool _value = false;
+
+  @override
+  void initState() {
+    _value = widget.value;
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(Favorite oldWidget) {
+    if (oldWidget.value != widget.value) {
+      _value = widget.value;
+      if (widget.onChanged != null) widget.onChanged(_value);
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return Center(
+      child: InkWell(
+        onTap: () {
+          setState(() => _value = !_value);
+          if (widget.onChanged != null) widget.onChanged(_value);
+        },
+        child: Container(
+          width: size.width * 0.09 * 0.9,
+          height: size.width * 0.09 * 0.9,
+          child: Center(
+            child: FaIcon(
+              _value ? FontAwesomeIcons.solidStar : FontAwesomeIcons.star,
+              color: Colors.amber,
+              size: 22 * 0.9,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

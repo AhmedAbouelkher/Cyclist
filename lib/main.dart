@@ -2,6 +2,7 @@ import 'package:after_layout/after_layout.dart';
 import 'package:cyclist/Controllers/blocs/Categories/categories_bloc.dart';
 import 'package:cyclist/Controllers/blocs/MakeRide/makeride_bloc.dart';
 import 'package:cyclist/Controllers/blocs/Posts/posts_bloc.dart';
+import 'package:cyclist/Controllers/blocs/RideComments/ridecomments_bloc.dart';
 import 'package:cyclist/Controllers/blocs/Rides/rides_bloc.dart';
 import 'package:cyclist/Controllers/repositories/home/repository.dart';
 import 'package:cyclist/Controllers/repositories/lang_repo.dart';
@@ -75,6 +76,7 @@ class _MyAppState extends State<MyApp> with AfterLayoutMixin<MyApp> {
       providers: [
         BlocProvider(create: (context) => RidesBloc(homeRepo: _homeRepo)..add(LoadRides(key: UniqueKey()))),
         BlocProvider(create: (context) => CategoriesBloc(homeRepo: _homeRepo)..add(LoadCategories())),
+        BlocProvider(create: (context) => RidecommentsBloc(homeRepo: _homeRepo)),
         BlocProvider(create: (context) => MakerideBloc(homeRepo: _homeRepo)),
         BlocProvider(create: (context) => PostsBloc(homeRepo: _homeRepo)),
       ],

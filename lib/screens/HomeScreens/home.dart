@@ -43,7 +43,7 @@ class _HomeTapState extends State<HomeTap> {
       if (_block) return;
       _block = true;
       print("#LOAD MORE DATA");
-      BlocProvider.of<CategoriesBloc>(context).add(LoadCategories(status: "initial"));
+      BlocProvider.of<CategoriesBloc>(context).add(LoadCategories());
     }
   }
 

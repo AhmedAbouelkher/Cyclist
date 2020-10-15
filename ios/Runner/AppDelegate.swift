@@ -9,7 +9,7 @@ import Firebase
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    GMSServices.provideAPIKey("AIzaSyB7PAUL-qTHLWKUEZnJt5j5GqD67zdrubY")
+    GMSServices.provideAPIKey("AIzaSyCj-aYdR58h0wlh2NCHZAMfU8E52LIWAlI")
     UIApplication.shared.isStatusBarHidden = false
     FirebaseApp.configure()
     if #available(iOS 10.0, *) {

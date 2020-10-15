@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:432735124521:android:ad1ac2c092491f1f7fb038",
+        "mobilesdk_app_id": "1:432735124521:android:df27d7dfaf3812d97fb038",
         "android_client_info": {
-          "package_name": "com.example.cyclist"
+          "package_name": "tk.ainzimati.alaglate"
         }
       },
       "oauth_client": [
@@ -32,10 +32,10 @@
               "client_type": 3
             },
             {
-              "client_id": "432735124521-ppjib223vcr2889pparljlj1g3i3bnm9.apps.googleusercontent.com",
+              "client_id": "432735124521-dks7c9oh1cuh28ts8f5kegrtk6qbq7dl.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.cyclist"
+                "bundle_id": "tk.ainzimati.alaglate"
               }
             }
           ]

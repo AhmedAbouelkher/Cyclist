@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:cyclist/Controllers/blocs/MakeRide/makeride_bloc.dart';
-import 'package:cyclist/GoeLocation/models.dart';
+import 'package:cyclist/Services/GoeLocation/models.dart';
 import 'package:cyclist/models/Rides/ride_post_request.dart';
 import 'package:cyclist/utils/alert_manager.dart';
 import 'package:cyclist/utils/colors.dart';
@@ -20,8 +20,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:platform_date_picker/platform_date_picker.dart';
-import 'package:cyclist/GoeLocation/geo_locator.dart';
 import 'package:cyclist/utils/extensions.dart';
+import 'package:cyclist/Services/GoeLocation/geo_locator.dart';
 
 class AddNewLafa extends StatefulWidget {
   final CLocation currentUserLocation;

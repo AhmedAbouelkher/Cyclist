@@ -53,7 +53,7 @@ class _ArticleState extends State<Article> {
       if (_block) return;
       _block = true;
       print("#LOAD MORE DATA");
-      BlocProvider.of<PostsBloc>(context).add(LoadPosts(categoryId: widget.categoryId, status: "initial"));
+      BlocProvider.of<PostsBloc>(context).add(LoadPosts(categoryId: widget.categoryId));
     }
   }
 

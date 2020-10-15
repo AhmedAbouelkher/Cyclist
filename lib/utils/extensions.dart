@@ -37,14 +37,11 @@ extension NewFormat on DateTime {
     return DateFormat("d MMMM y").format(this);
   }
 
-  String get daySlashMonthSlashYear {
-    return DateFormat.yMd().format(this);
+  String get dayMonthNonUSFormate {
+    return DateFormat("Md").format(this);
   }
 
-  // ignore: non_constant_identifier_names
-  String get getTimeAsPM_AM {
-    DateTime now = DateTime.now();
-    String currentTime = DateFormat.jm().format(now);
-    return currentTime;
+  String get daySlashMonthSlashYear {
+    return DateFormat.yMd().format(this);
   }
 }

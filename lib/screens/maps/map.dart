@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cyclist/Controllers/blocs/Rides/rides_bloc.dart';
-import 'package:cyclist/GoeLocation/models.dart';
+import 'package:cyclist/Services/GoeLocation/geo_locator.dart';
+import 'package:cyclist/Services/GoeLocation/models.dart';
 import 'package:cyclist/models/Rides/rides_response.dart';
 import 'package:cyclist/screens/maps/add_new_lafa.dart';
 import 'package:cyclist/screens/maps/show_lafa.dart';
@@ -15,7 +16,6 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cyclist/utils/extensions.dart';
 import 'package:location/location.dart';
-import 'package:cyclist/GoeLocation/geo_locator.dart';
 
 class HalaLafaTap extends StatefulWidget {
   HalaLafaTap({Key key}) : super(key: key);
@@ -33,7 +33,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
   void initState() {
     _refreshCompleter = Completer<void>();
     _scrollController = ScrollController()..addListener(_onScroll);
-    _location = Location();
+    _location = Location.instance;
     _location.getLocation().then((value) {
       setState(() => _currentLocation = value.toLocation());
       print(value.toString());

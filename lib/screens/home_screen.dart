@@ -1,9 +1,14 @@
+import 'dart:async';
+import 'package:after_layout/after_layout.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:cyclist/Services/Config/remote_config.dart';
 import 'package:cyclist/screens/HomeScreens/home.dart';
 import 'package:cyclist/screens/maps/map.dart';
 import 'package:cyclist/screens/settings_screen.dart';
+import 'package:cyclist/utils/alert_manager.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
+import 'package:cyclist/utils/shared_perfs_provider.dart';
 import 'package:cyclist/widgets/standered_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,13 +20,11 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
   int _screenIndex = 0;
   final List<Widget> _taps = [
     HomeTap(),
-    // ServicesTap(),
     HalaLafaTap(),
-    // NotificationsTap(),
     SettingScreen(),
   ];
   @override
@@ -31,10 +34,7 @@ class _HomeState extends State<Home> {
       appBar: StanderedAppBar(),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {
-      //     // final _l = DateFormat('H:m:s').format(DateTime.now());
-      //     // final _result = "2020-10-05 " + _l;
-      //     // print(DateFormat.jm().format(DateTime.parse("2020-10-05 " + _result)));
-      //     print(DateFormat('H:m:s').format(TimeOfDay.now().timeOfDayToDateTime()));
+      //     showTrialPeriodAlert(context: context);
       //   },
       // ),
       bottomNavigationBar: ConvexAppBar(
@@ -42,9 +42,7 @@ class _HomeState extends State<Home> {
         backgroundColor: CColors.darkGreen,
         items: [
           TabItem(icon: Icons.home, title: trs.translate("home_screen")),
-          // TabItem(icon: FontAwesomeIcons.wrench, title: trs.translate("service")),
           TabItem(icon: FontAwesomeIcons.mapMarkerAlt, title: trs.translate("yala_lafa")),
-          // TabItem(icon: Icons.notifications, title: trs.translate("notifications")),
           TabItem(icon: Icons.settings, title: trs.translate("settings")),
         ],
         initialActiveIndex: _screenIndex, //optional, default as 0
@@ -53,12 +51,24 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: _taps[_screenIndex],
       ),
-      // body: SafeArea(
-      //   child: IndexedStack(
-      //     index: _screenIndex,
-      //     children: _taps,
-      //   ),
-      // ),
     );
+  }
+
+  Future<void> _dialog;
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    final bool _isTrialPeroidOn = PreferenceUtils.getInstance().getValueWithKey(trialPeroidKey);
+    if (_isTrialPeroidOn) {
+      Timer.periodic(Duration(minutes: 2), (_) => _checkAndShowDialog());
+    }
+  }
+
+  void _checkAndShowDialog() async {
+    if (_dialog == null) {
+      _dialog = showTrialPeriodAlert(context: context);
+      await _dialog;
+      _dialog = null;
+    }
   }
 }

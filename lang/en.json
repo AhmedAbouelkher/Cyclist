@@ -169,7 +169,7 @@
   "from_gallery": "Pick form Gallery",
   "from_camera": "Pick from Camera Roll",
   "info": "Info",
-  "api_key_error": "This feature is diabled\nContact the developer form more information",
+  "app_traild_peroid_expiration": "Please, Contact the Developer to disable the trial peroid.",
   "restart_to_apply_lang": "It is recommended to restart the app to fully apply the language change",
   "home_screen_short": "Home",
   "no_notificaion": "No Notifications",
@@ -238,5 +238,9 @@
   "videos": "Videos",
   "no_categories": "There are no categories",
   "rating_error": "An error happened, try again later",
-  "home_tab": "Home"
+  "home_tab": "Home",
+  "comments": "Comments",
+  "write_a_comment": "Write a comment...",
+  "no_comments_found": "No Comments",
+  "call": "Call"
 }

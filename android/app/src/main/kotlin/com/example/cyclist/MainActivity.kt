@@ -1,4 +1,4 @@
-package com.example.cyclist
+package tk.ainzimati.alaglate
 
 import android.os.Bundle
 import io.flutter.app.FlutterActivity

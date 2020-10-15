@@ -67,7 +67,8 @@ dependencies:
   # webview_flutter: ^1.0.1
   chewie: ^0.9.10
   video_player: any
-  horizontal_blocked_scroll_physics: ^3.0.0
+  firebase_remote_config: ^0.4.0+2
+
 
 flutter_icons:
   android: "launcher_icon"

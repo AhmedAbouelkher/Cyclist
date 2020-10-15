@@ -38,4 +38,6 @@ class Constants {
 
   ///`Post` and `Get` route
   static const String ridesApi = _websiteApi + "api/rides/";
+
+  static const String commentsApi = _websiteApi + "api/comments";
 }
