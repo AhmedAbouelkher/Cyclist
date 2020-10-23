@@ -1,4 +1,4 @@
-package tk.ainzimati.alaglate
+package com.alaglate
 
 import android.os.Bundle
 import io.flutter.app.FlutterActivity

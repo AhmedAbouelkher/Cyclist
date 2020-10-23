@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:432735124521:android:df27d7dfaf3812d97fb038",
+        "mobilesdk_app_id": "1:432735124521:android:3ae3f210e65d0eb57fb038",
         "android_client_info": {
-          "package_name": "tk.ainzimati.alaglate"
+          "package_name": "com.alaglate"
         }
       },
       "oauth_client": [

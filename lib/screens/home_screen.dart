@@ -34,7 +34,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
       appBar: StanderedAppBar(),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {
-      //     showTrialPeriodAlert(context: context);
+      //     print(DateFormat("yyyy-MM-dd h:mm a").format(DateTime.now()));
       //   },
       // ),
       bottomNavigationBar: ConvexAppBar(

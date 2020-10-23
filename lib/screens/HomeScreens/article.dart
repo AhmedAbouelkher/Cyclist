@@ -44,6 +44,7 @@ class _HomeArticlState extends State<HomeArticl> {
         child: CustomScrollView(
           slivers: [
             SliverPersistentHeader(
+              floating: true,
               delegate: NetworkingPageHeader(
                 minExtent: 150.0,
                 maxExtent: 250.0,
@@ -55,12 +56,7 @@ class _HomeArticlState extends State<HomeArticl> {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text(
-                  widget.post.post * 50,
-                  style: TextStyle(
-                    fontSize: 32 * size.aspectRatio,
-                  ),
-                ),
+                child: Text(widget.post.post, style: TextStyle(fontSize: 11)),
               ),
             ),
             SliverToBoxAdapter(child: SizedBox(height: size.height * 0.02)),
@@ -98,42 +94,43 @@ class _HomeArticlState extends State<HomeArticl> {
                       ],
                     ),
                   ),
-            _videos.isEmpty
-                ? SliverToBoxAdapter(child: SizedBox())
-                : SliverToBoxAdapter(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Divider.symmetric(horizontal: 25),
-                        SizedBox(height: 25),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Row(
-                            children: [
-                              Icon(FontAwesomeIcons.images, size: 15),
-                              SizedBox(width: 10),
-                              Text(
-                                trs.translate("videos"),
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
+            if (_videos.isEmpty)
+              SliverToBoxAdapter(child: SizedBox())
+            else
+              SliverToBoxAdapter(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Divider.symmetric(horizontal: 25),
+                    SizedBox(height: 25),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        children: [
+                          Icon(FontAwesomeIcons.images, size: 15),
+                          SizedBox(width: 10),
+                          Text(
+                            trs.translate("videos"),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    for (var index = 0; index < _videos.length; index++)
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: ChewieListItem(
+                          videoPlayerController: VideoPlayerController.network(
+                            _videos[index],
                           ),
                         ),
-                        for (var index = 0; index < _videos.length; index++)
-                          Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: ChewieListItem(
-                              videoPlayerController: VideoPlayerController.network(
-                                _videos[index],
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
+                      ),
+                  ],
+                ),
+              ),
             SliverToBoxAdapter(child: SizedBox(height: size.height * 0.03)),
             SliverToBoxAdapter(
               child: Column(
@@ -146,9 +143,19 @@ class _HomeArticlState extends State<HomeArticl> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // Spacer(),
-                        Text(trs.translate("published_in")),
+                        Text(
+                          trs.translate("published_in"),
+                          style: TextStyle(
+                            fontSize: 10,
+                          ),
+                        ),
                         SizedBox(width: 5),
-                        Text(widget.post.createdAt.daySlashMonthSlashYear),
+                        Text(
+                          widget.post.createdAt.daySlashMonthSlashYear,
+                          style: TextStyle(
+                            fontSize: 10,
+                          ),
+                        ),
                       ],
                     ),
                   ),

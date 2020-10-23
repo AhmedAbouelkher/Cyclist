@@ -12,8 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:cyclist/utils/extensions.dart';
-import 'package:intl/intl.dart' hide TextDirection;
 
 class RideComments extends StatefulWidget {
   final Ride ride;
@@ -28,7 +26,6 @@ class _RideCommentsState extends State<RideComments> {
   Completer<void> _refreshCompleter;
   TextEditingController _textEditingController;
   bool _isLoading = false;
-
   HomeRepo _homeRepo;
   @override
   void initState() {
@@ -159,12 +156,16 @@ class _RideCommentsState extends State<RideComments> {
                                           trailing: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Text(comment.createdAt.dayMonthNonUSFormate, style: TextStyle(fontSize: 10)),
                                               Text(
-                                                DateFormat.jm().format(comment.createdAt),
+                                                comment.createdAt,
+                                                style: TextStyle(fontSize: 8),
                                                 textDirection: TextDirection.ltr,
-                                                style: TextStyle(fontSize: 9, color: CColors.darkGreenAccent),
                                               ),
+                                              // Text(
+                                              //   DateFormat("ms").format(comment.createdAt),
+                                              //   textDirection: TextDirection.ltr,
+                                              //   style: TextStyle(fontSize: 8, color: CColors.darkGreenAccent),
+                                              // ),
                                             ],
                                           ),
                                         ),
@@ -208,16 +209,16 @@ class _RideCommentsState extends State<RideComments> {
                         controller: _textEditingController,
                         keyboardType: TextInputType.multiline,
                         cursorColor: Color(0xFF707070).withOpacity(0.45),
-                        style: TextStyle(color: Colors.black, fontSize: 14),
+                        style: TextStyle(color: Colors.black, fontSize: 12),
                         decoration: InputDecoration(
                           isDense: true,
                           fillColor: Color(0xFF707070).withOpacity(0.45),
                           hintText: trs.translate("write_a_comment"),
-                          hintStyle: TextStyle(color: Color(0xFF707070).withOpacity(0.45), fontSize: 14.0),
+                          hintStyle: TextStyle(color: Color(0xFF707070).withOpacity(0.45), fontSize: 12.0),
                           enabledBorder:
-                              OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20)), borderSide: BorderSide(color: CColors.darkGreenAccent)),
+                              OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(999)), borderSide: BorderSide(color: CColors.darkGreenAccent)),
                           focusedBorder:
-                              OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20)), borderSide: BorderSide(color: CColors.darkGreenAccent)),
+                              OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(999)), borderSide: BorderSide(color: CColors.darkGreenAccent)),
                           border:
                               OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20)), borderSide: BorderSide(color: CColors.darkGreenAccent)),
                         ),

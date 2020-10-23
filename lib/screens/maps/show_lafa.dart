@@ -256,11 +256,11 @@ class _ShowLafaState extends State<ShowLafa> {
                       // width: 45,
                       // height: 45,
                       child: Padding(
-                        padding: const EdgeInsets.all(15.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Icon(
                           FontAwesomeIcons.commentDots,
-                          color: CColors.lightGreen,
-                          size: 25,
+                          color: CColors.white,
+                          size: 35,
                         ),
                       ),
                     ),

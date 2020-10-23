@@ -43,7 +43,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "tk.ainzimati.alaglate"
+        applicationId "com.alaglate"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()

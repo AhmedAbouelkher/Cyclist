@@ -52,7 +52,7 @@ class CenterError extends StatelessWidget {
                   style: TextStyle(
                     color: CColors.lightGreen,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 12,
                   ),
                 ),
             SizedBox(height: size.height * 0.03),

@@ -242,5 +242,7 @@
   "comments": "Comments",
   "write_a_comment": "Write a comment...",
   "no_comments_found": "No Comments",
-  "call": "Call"
+  "call": "Call",
+  "privacy_policy": "Privacy Policy",
+  "terms_and_conditions": "Terms and Conditions"
 }

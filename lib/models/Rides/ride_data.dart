@@ -59,10 +59,10 @@ class Comments {
   final int from;
   final int lastPage;
   final String lastPageUrl;
-  final String nextPageUrl;
+  final dynamic nextPageUrl;
   final String path;
   final int perPage;
-  final String prevPageUrl;
+  final dynamic prevPageUrl;
   final int to;
   final int total;
 
@@ -73,10 +73,10 @@ class Comments {
     int from,
     int lastPage,
     String lastPageUrl,
-    String nextPageUrl,
+    dynamic nextPageUrl,
     String path,
     int perPage,
-    String prevPageUrl,
+    dynamic prevPageUrl,
     int to,
     int total,
   }) =>
@@ -102,10 +102,10 @@ class Comments {
         from: json["from"] == null ? null : json["from"],
         lastPage: json["last_page"] == null ? null : json["last_page"],
         lastPageUrl: json["last_page_url"] == null ? null : json["last_page_url"],
-        nextPageUrl: json["next_page_url"] == null ? null : json["next_page_url"],
+        nextPageUrl: json["next_page_url"],
         path: json["path"] == null ? null : json["path"],
         perPage: json["per_page"] == null ? null : json["per_page"],
-        prevPageUrl: json["prev_page_url"] == null ? null : json["prev_page_url"],
+        prevPageUrl: json["prev_page_url"],
         to: json["to"] == null ? null : json["to"],
         total: json["total"] == null ? null : json["total"],
       );
@@ -117,10 +117,10 @@ class Comments {
         "from": from == null ? null : from,
         "last_page": lastPage == null ? null : lastPage,
         "last_page_url": lastPageUrl == null ? null : lastPageUrl,
-        "next_page_url": nextPageUrl == null ? null : nextPageUrl,
+        "next_page_url": nextPageUrl,
         "path": path == null ? null : path,
         "per_page": perPage == null ? null : perPage,
-        "prev_page_url": prevPageUrl == null ? null : prevPageUrl,
+        "prev_page_url": prevPageUrl,
         "to": to == null ? null : to,
         "total": total == null ? null : total,
       };
@@ -138,15 +138,15 @@ class Comment {
   final int id;
   final String rideId;
   final String comment;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final String createdAt;
+  final String updatedAt;
 
   Comment copyWith({
     int id,
     String rideId,
     String comment,
-    DateTime createdAt,
-    DateTime updatedAt,
+    String createdAt,
+    String updatedAt,
   }) =>
       Comment(
         id: id ?? this.id,
@@ -160,16 +160,16 @@ class Comment {
         id: json["id"] == null ? null : json["id"],
         rideId: json["ride_id"] == null ? null : json["ride_id"],
         comment: json["comment"] == null ? null : json["comment"],
-        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] == null ? null : json["created_at"],
+        updatedAt: json["updated_at"] == null ? null : json["updated_at"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id == null ? null : id,
         "ride_id": rideId == null ? null : rideId,
         "comment": comment == null ? null : comment,
-        "created_at": createdAt == null ? null : createdAt.toIso8601String(),
-        "updated_at": updatedAt == null ? null : updatedAt.toIso8601String(),
+        "created_at": createdAt == null ? null : createdAt,
+        "updated_at": updatedAt == null ? null : updatedAt,
       };
 }
 

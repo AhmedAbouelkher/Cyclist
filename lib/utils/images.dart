@@ -23,7 +23,7 @@ const String loginBannerSVG = '$_assets/svgs/phone_sing_in.svg';
 class Constants {
   static const String _assets = 'assets/';
   static const String _dataPath = _assets + "data/";
-  static const String _websiteApi = "http://alaglate.ainzimati.tk/";
+  static const String _websiteApi = "https://alaglate.com/";
 
   static const String logo = _dataPath + "logo.png";
   static const String logoV = _dataPath + "logo_v.png";

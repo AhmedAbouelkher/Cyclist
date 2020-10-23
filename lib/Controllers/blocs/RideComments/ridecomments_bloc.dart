@@ -6,6 +6,7 @@ import 'package:cyclist/Controllers/repositories/home/repository.dart';
 import 'package:cyclist/models/Rides/ride_data.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 
 part 'ridecomments_event.dart';
 part 'ridecomments_state.dart';
@@ -18,10 +19,11 @@ class RidecommentsBloc extends Bloc<RidecommentsEvent, RidecommentsState> {
   List<Comment> get comments => _comments;
 
   void addComment({@required int rideId, @required String comment}) {
+    final _timeNowFormate = DateFormat("yyyy-MM-dd h:mm a").format(DateTime.now());
     _comments.add(Comment(
       id: Random().nextInt(99),
-      updatedAt: DateTime.now(),
-      createdAt: DateTime.now(),
+      updatedAt: _timeNowFormate,
+      createdAt: _timeNowFormate,
       comment: comment,
       rideId: rideId.toString(),
     ));

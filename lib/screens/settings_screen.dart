@@ -1,4 +1,3 @@
-import 'package:cyclist/Controllers/repositories/lang_repo.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
 import 'package:cyclist/widgets/change_lang.dart';
@@ -111,40 +110,27 @@ class _SettingScreenState extends State<SettingScreen> {
                   ),
                   DviderRow(),
                   ListTile(
-                    // contentPadding: EdgeInsets.all(0),
                     leading: Icon(FontAwesomeIcons.fileAlt),
                     onTap: () async {
-                      // await _launchURL("terms");
+                      await _launchURL("https://alaglate.com/privacy_policy");
                     },
                     title: Text(
-                      trs.translate("use_policy"),
+                      trs.translate("privacy_policy"),
                       style: TextStyle(fontSize: 13 * .8),
                     ),
                   ),
-                  // DviderRow(),
-                  // ListTile(
-                  //   // contentPadding: EdgeInsets.all(0),
-                  //   leading: Icon(FontAwesomeIcons.shippingFast),
-                  //   onTap: () async {
-                  //     await _launchURL("shipping-and-delivery");
-                  //   },
-                  //   title: Text(
-                  //     trs.translate("shipping_and_delivery"),
-                  //     style: TextStyle(fontSize: 13),
-                  //   ),
-                  // ),
-                  // DviderRow(),
-                  // ListTile(
-                  //   // contentPadding: EdgeInsets.all(0),
-                  //   leading: Icon(FontAwesomeIcons.slash),
-                  //   onTap: () async {
-                  //     await _launchURL("cancellation-of-requests-and-support");
-                  //   },
-                  //   title: Text(
-                  //     trs.translate("cancellation-of-requests-and-support"),
-                  //     style: TextStyle(fontSize: 13),
-                  //   ),
-                  // ),
+                  DviderRow(),
+                  ListTile(
+                    // contentPadding: EdgeInsets.all(0),
+                    leading: Icon(FontAwesomeIcons.file),
+                    onTap: () async {
+                      await _launchURL("https://alaglate.com/terms_and_conditions");
+                    },
+                    title: Text(
+                      trs.translate("terms_and_conditions"),
+                      style: TextStyle(fontSize: 13 * .8),
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -154,12 +140,10 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
-  // ignore: unused_element
   Future<void> _launchURL(String path) async {
-    String langCode = await LangRepo().getLocaleCode();
-    final url = 'https://www.mazajasly.com/$langCode/$path';
+    final url = path;
     if (await canLaunch(url)) {
-      await launch(url, statusBarBrightness: Brightness.light);
+      await launch(url);
     } else {
       print('Could not launch $url');
     }

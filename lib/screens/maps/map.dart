@@ -7,6 +7,7 @@ import 'package:cyclist/screens/maps/add_new_lafa.dart';
 import 'package:cyclist/screens/maps/show_lafa.dart';
 import 'package:cyclist/utils/colors.dart';
 import 'package:cyclist/utils/locales/app_translations.dart';
+import 'package:cyclist/utils/shared_perfs_provider.dart';
 import 'package:cyclist/widgets/AdaptiveProgressIndicator.dart';
 import 'package:cyclist/widgets/center_err.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
   CLocation _currentLocation;
   ScrollController _scrollController;
   Completer<void> _refreshCompleter;
+  final PreferenceUtils _prefs = PreferenceUtils.getInstance();
   @override
   void initState() {
     _refreshCompleter = Completer<void>();
@@ -98,11 +100,11 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
                 ),
               );
             },
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add, size: 17),
             label: Text(
               trs.translate("add_new_lafa"),
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 10,
               ),
             ),
           ),
@@ -185,51 +187,64 @@ class _HalaLafaTapState extends State<HalaLafaTap> {
                               newLocation: ride.startLocation.toLocation(),
                             ).getDistance;
                           }
+                          final _isFavorite = (_prefs.getValueWithKey(ride.id.toString(), hideDebugPrint: true) ?? false);
                           return AnimationConfiguration.staggeredList(
                             position: index,
                             duration: const Duration(milliseconds: 500),
                             child: SlideAnimation(
                               horizontalOffset: -100.0,
                               child: FadeInAnimation(
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(color: CColors.darkGreenAccent, width: 1.5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: CColors.darkGreenAccent.withAlpha(30),
-                                        spreadRadius: 1,
-                                        blurRadius: 10,
-                                      ),
-                                    ],
-                                  ),
-                                  child: ListTile(
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        platformPageRoute(
-                                          context: context,
-                                          builder: (context) => ShowLafa(
-                                            currentUserLocation: _currentLocation,
-                                            ride: ride,
-                                            onChange: () {},
-                                          ),
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      child: Container(
+                                        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(color: _isFavorite ? Colors.amber : CColors.darkGreenAccent, width: 1.5),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: _isFavorite ? Colors.amber.withAlpha(50) : CColors.darkGreenAccent.withAlpha(50),
+                                              spreadRadius: 1,
+                                              blurRadius: 10,
+                                            ),
+                                          ],
                                         ),
-                                      );
-                                    },
-                                    // leading: CircleAvatar(backgroundImage: AssetImage("assets/MapStyle/satellite_mode.png")),
-                                    title: Text(
-                                      trs.translate("lafa_number") + "\t#${ride.id}\t",
-                                      style: TextStyle(
-                                        fontSize: 13,
+                                        child: ListTile(
+                                          contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 5),
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              platformPageRoute(
+                                                context: context,
+                                                builder: (context) => ShowLafa(
+                                                  currentUserLocation: _currentLocation,
+                                                  ride: ride,
+                                                  onChange: () {},
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          // leading: CircleAvatar(backgroundImage: AssetImage("assets/MapStyle/satellite_mode.png")),
+                                          title: Text(
+                                            trs.translate("lafa_number") + "\t#${ride.id}\t",
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                          subtitle: _buildLafaBody(trs, ride),
+                                          trailing: _buildLafaTrialing(_distance),
+                                        ),
                                       ),
                                     ),
-                                    subtitle: _buildLafaBody(trs, ride),
-                                    trailing: _buildLafaTrialing(_distance),
-                                  ),
+                                    Positioned.directional(
+                                      textDirection: trs.currentTextDirection,
+                                      end: 10,
+                                      top: 5,
+                                      child: _isFavorite ? FaIcon(FontAwesomeIcons.solidStar, color: Colors.amber) : SizedBox(),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

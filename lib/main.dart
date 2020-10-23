@@ -23,8 +23,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await PreferenceUtils.init();
-  runApp(DevicePreview(enabled: false, builder: (context) => MyApp()));
   Bloc.observer = SimpleBlocObserver();
+  runApp(DevicePreview(enabled: false, builder: (context) => MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -63,9 +63,7 @@ class _MyAppState extends State<MyApp> with AfterLayoutMixin<MyApp> {
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: Locale('ar', 'ar'));
 
     LangRepo().getLocaleCode().then((code) {
-      setState(() {
-        _newLocaleDelegate = AppTranslationsDelegate(newLocale: Locale(code, code));
-      });
+      setState(() => _newLocaleDelegate = AppTranslationsDelegate(newLocale: Locale(code, code)));
     });
     super.initState();
   }
@@ -93,7 +91,7 @@ class _MyAppState extends State<MyApp> with AfterLayoutMixin<MyApp> {
             GlobalCupertinoLocalizations.delegate,
           ],
           locale: _newLocaleDelegate.newLocale,
-          title: "Cyclist",
+          title: "Al Aglate",
           theme: ThemeData(
             fontFamily: 'Cairo',
             primaryColor: CColors.darkGreen,
