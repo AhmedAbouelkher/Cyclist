@@ -1,10 +1,11 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 const String trialPeroidKey = "app_trial_control";
+const String googleMapsApiKey = "api_key";
 
 class RemoteConfigService {
   final RemoteConfig _remoteConfig;
-  final defaults = <String, dynamic>{trialPeroidKey: false};
+  final defaults = <String, dynamic>{trialPeroidKey: false, googleMapsApiKey: "AIzaSyCj-aYdR58h0wlh2NCHZAMfU8E52LIWAlI"};
 
   static RemoteConfigService _instance;
   static Future<RemoteConfigService> getInstance() async {
@@ -19,6 +20,7 @@ class RemoteConfigService {
   RemoteConfigService({RemoteConfig remoteConfig}) : _remoteConfig = remoteConfig;
 
   bool get isInTrielPeroid => _remoteConfig.getBool(trialPeroidKey);
+  String get apiKey => _remoteConfig.getString(googleMapsApiKey);
 
   Future<bool> initialise() async {
     try {

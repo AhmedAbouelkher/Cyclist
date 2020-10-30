@@ -1,5 +1,6 @@
 import 'package:cyclist/Services/Config/remote_config.dart';
 import 'package:cyclist/screens/home_screen.dart';
+import 'package:cyclist/utils/constants.dart';
 import 'package:cyclist/utils/shared_perfs_provider.dart';
 import 'package:cyclist/widgets/custom_page_transition.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -34,6 +35,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         await _remoteConfig.initialise();
         await PreferenceUtils.getInstance().saveValueWithKey<bool>(trialPeroidKey, _remoteConfig.isInTrielPeroid);
         print("@Trial Version #${_remoteConfig.isInTrielPeroid}");
+        Constants.setApiKey = _remoteConfig.apiKey;
         Navigator.pushReplacement(context, CustomPageRoute(builder: (_) => Home(), duration: Duration(milliseconds: 400)));
       },
     );
